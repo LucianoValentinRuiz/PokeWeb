@@ -1,0 +1,262 @@
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(201, 201, 201);
+    
+    height: 100%;
+    margin: 0; /* Elimina márgenes predeterminados */
+    background-color:#1e1f26;
+
+   
+    
+}
+.wrapper{
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
+}
+
+/*---------------------Menu-------------------*/
+
+.container-menu {
+    margin:0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    
+    justify-content: flex-end /*lo coloca al fondo*/
+
+}
+
+.container-menu li{
+    list-style-type: none; /*saca las viñetas*/  
+    cursor: pointer; 
+    position: relative; /* Necesario para que el submenú se posicione relativo al padre */
+    transition: background-color 0.3s ease;   
+    padding: 10px 20px;
+    width: auto;
+    
+}
+
+.container-menu a {
+    text-decoration: none;
+    color: white; 
+}
+
+.container-menu li:hover {
+    /*background-color: #575757; /* Cambia ligeramente al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.05); 
+    color: #ffffff; /* El texto se ilumina */
+}
+
+/* Estilo para el elemento activo */
+.container-menu li.active {
+    border-bottom: 5px solid #4255d4; /* Borde inferior cuando el elemento está activo */
+    background: #11132c;
+    
+}
+
+
+/*submenu*/
+.submenu{
+    position: absolute;
+    top: 100%;
+    left: 0 ;
+    padding: 0; /*elimina el padding extra */
+    display: none; 
+}
+
+
+/*mostrar el submenú al pasar el mouse */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+
+/* --- Fila Inferior (Buscador) --- */
+.header-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center; /*cntra verticalmente la lupa y el input */
+  
+  /*Box*/
+  background: rgba(0, 0, 0, 0.3); 
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+  border-radius: 12px;
+  padding: 12px 20px;
+  gap: 12px;
+  width: 100%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+/*efecto hover/focus*/
+.search-container:focus-within {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(138, 92, 255, 0.6); /*borde violeta */
+  box-shadow: 0 0 15px rgba(138, 92, 255, 0.4);
+}
+
+.search-icon {
+  opacity: 0.6; 
+  font-size: 1.1rem;
+}
+.search-input {
+  background: transparent; 
+  border: none;
+  outline: none; /*quita el recuadro que aparece por defecto al hacer clic */
+  
+  color: #ffffff; /*color del texto que escribe el usuario*/
+  width: 100%; /*input ocupe todo el espacio restante*/
+}
+
+
+/* --- Estilos Base --- */
+main {
+  /*gradiente radial s*/
+  background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
+  color: #f0f0f5; 
+  margin: 0;
+  
+ 
+}
+
+/* ------cuadricula Pokedex------------------------- */
+.pokedex-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px; /*espacio*/
+  max-width: 1200px;
+  margin: 0 auto; /*centrat grip*/
+  padding: 30px;
+}
+
+/* ------------------------------tarjeta Pokémon -------------- */
+.pokemon-card {
+  /*fondo*/
+  background-color: rgba(20, 15, 30, 0.4); 
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  
+  border: 1px solid rgba(138, 92, 255, 0.5); 
+  box-shadow: 0 0 15px rgba(138, 92, 255, 0.15), inset 0 0 10px rgba(138, 92, 255, 0.05); 
+}
+
+/*efecto*/
+.pokemon-card:hover {
+  transform: translateY(-5px); /*levantamiento */
+  /*brillo intenso en hover */
+  box-shadow: 0 0 25px rgba(138, 92, 255, 0.3), inset 0 0 15px rgba(138, 92, 255, 0.1);
+}
+
+/* 
+.pokemon-card.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  backdrop-filter: blur(16px); 
+ 
+  z-index: -1; 
+}*/
+
+/* ------seccion de imagen -------------*/
+.image-circle {
+  width: 150px;
+  height: 150px;
+  margin: 25px auto; /*centrar vertical y horizontalmente */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  /*crculo mas oscuro */
+  border: 1px solid rgba(138, 92, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 10px rgba(138, 92, 255, 0.05);
+}
+
+.image-circle img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain; /*proporciones*/
+}
+
+/* ---------contenido--- */
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.pokemon-id {
+  font-size: 0.85rem;
+  color: #8b86a3; 
+  margin-bottom: 5px;
+}
+
+.pokemon-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #e2dff0; 
+  text-transform: capitalize;
+}
+
+.pokemon-type {
+  font-size: 0.95rem;
+  color: #8b86a3;
+}
+
+/* ---tipo box --- */
+.type {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-left: 5px;
+}
+
+.type.grass {
+  
+  background-color: rgba(67, 160, 71, 0.2);
+  color: #a5d6a7;
+  border: 1px solid rgba(67, 160, 71, 0.4);
+}
+
+.type.fire {
+  
+  background-color: rgba(229, 57, 53, 0.2);
+  color: #ef9a9a;
+  border: 1px solid rgba(229, 57, 53, 0.4);
+}
+
+
+
+
+
+
+
+
+/*Estilo footer general*/
+footer{    
+    background-color: #010a2b;  
+    color:whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
+
+.footer-pok{    
+    text-align: center; /*centra el texto horizontalmente */
+    padding: 5px; 
+    background-color: #000812;
+}
