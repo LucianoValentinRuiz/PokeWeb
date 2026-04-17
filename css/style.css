@@ -1,14 +1,12 @@
 html, body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(201, 201, 201);
-    
     height: 100%;
     margin: 0; /* Elimina márgenes predeterminados */
-    background-color:#1e1f26;
-
-   
+    background-color:#1e1f26; 
     
 }
+
 .wrapper{
     min-height: 100%;
     display: grid;
@@ -16,7 +14,7 @@ html, body {
     background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
 }
 
-/*---------------------Menu-------------------*/
+/*-----------------------------------------------Menu Inicio------------------------------------------------*/
 
 .container-menu {
     margin:0;
@@ -24,7 +22,6 @@ html, body {
     display: flex;
     flex-direction: row;
     gap: 0px;
-    
     justify-content: flex-end /*lo coloca al fondo*/
 
 }
@@ -32,7 +29,7 @@ html, body {
 .container-menu li{
     list-style-type: none; /*saca las viñetas*/  
     cursor: pointer; 
-    position: relative; /* Necesario para que el submenú se posicione relativo al padre */
+    position: relative; /*necesario para que el submenú se posicione relativo al padre */
     transition: background-color 0.3s ease;   
     padding: 10px 20px;
     width: auto;
@@ -45,12 +42,12 @@ html, body {
 }
 
 .container-menu li:hover {
-    /*background-color: #575757; /* Cambia ligeramente al pasar el ratón */
+    /*background-color: #575757; /* */
     background-color: rgba(255, 255, 255, 0.05); 
-    color: #ffffff; /* El texto se ilumina */
+    color: #ffffff; /*el texto se ilumina */
 }
 
-/* Estilo para el elemento activo */
+/*estilo para el elemento activo */
 .container-menu li.active {
     border-bottom: 5px solid #4255d4; /* Borde inferior cuando el elemento está activo */
     background: #11132c;
@@ -74,10 +71,11 @@ html, body {
 }
 
 
-/* --- Fila Inferior (Buscador) --- */
+/* ----------------------Fila Inferior (Buscador) ------------------------------- */
 .header-bottom {
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
 .search-container {
@@ -116,7 +114,7 @@ html, body {
 }
 
 
-/* --- Estilos Base --- */
+/* -------------------- Estilos Base ----------------------------------*/
 main {
   /*gradiente radial s*/
   background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
@@ -126,7 +124,7 @@ main {
  
 }
 
-/* ------cuadricula Pokedex------------------------- */
+/* -----------------------------------cuadricula Pokedex--------------------------------------- */
 .pokedex-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -136,7 +134,7 @@ main {
   padding: 30px;
 }
 
-/* ------------------------------tarjeta Pokémon -------------- */
+/* ------------------------------tarjeta Pokémon ---------------------------------------------- */
 .pokemon-card {
   /*fondo*/
   background-color: rgba(20, 15, 30, 0.4); 
@@ -168,7 +166,7 @@ main {
   z-index: -1; 
 }*/
 
-/* ------seccion de imagen -------------*/
+/* ---------------------seccion de imagen -----------------------------------------------*/
 .image-circle {
   width: 150px;
   height: 150px;
@@ -191,7 +189,7 @@ main {
   object-fit: contain; /*proporciones*/
 }
 
-/* ---------contenido--- */
+/* -------------------------contenido---------------------------------------------- */
 .card-content {
   padding: 20px;
   text-align: center;
@@ -216,7 +214,7 @@ main {
   color: #8b86a3;
 }
 
-/* ---tipo box --- */
+/* -------------------tipo box ------------------------------------------ */
 .type {
   display: inline-block;
   padding: 4px 10px;
@@ -240,14 +238,104 @@ main {
   border: 1px solid rgba(229, 57, 53, 0.4);
 }
 
+/*------------------------------Pagination---------------------------------*/
+
+/*contenedor principal*/
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  margin-bottom: 60px; 
+  width: 100%;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Diseño de cada botón / número */
+.page-btn {
+  background-color: rgba(20, 15, 30, 0.4); /*fondo oscuro */
+  border: 1px solid rgba(138, 92, 255, 0.2); /* */
+  color: #8b86a3; 
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+/*efecto Hover */
+.page-btn:hover:not(.active) {
+  background-color: rgba(138, 92, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(138, 92, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+/*pagina actual activa*/
+.page-btn.active {
+  background-color: rgba(138, 92, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(138, 92, 255, 0.8);
+  box-shadow: 0 0 15px rgba(138, 92, 255, 0.4); /* respandador violeta */
+}
+
+.page-dots {
+  color: rgba(138, 92, 255, 0.8);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* --- Botones Anterior y Siguiente --- */
+.page-prev, 
+.page-next {
+  background-color: rgba(20, 15, 30, 0.4); 
+  border: 1px solid rgba(138, 92, 255, 0.2);
+  color: #8b86a3;
+  padding: 8px 18px; 
+  border-radius: 20px; 
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  
+  /*alinear la flecha y el texto */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+/*efecto Hover para ant y sig*/
+.page-prev:hover, 
+.page-next:hover {
+  background-color: rgba(138, 92, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(138, 92, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+/*estado "Deshabilitado"
+ JS cambiar el atributo 'disabled', y este CSS lo hace opaco.
+*/
+.page-prev:disabled, 
+.page-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none; /*quita el salto*/
+  background-color: transparent;
+  border-color: rgba(138, 92, 255, 0.1);
+  color: #8b86a3;
+}
 
 
-
-
-
-
-
-/*Estilo footer general*/
+/*------------------------------footer---------------------------------*/
+/*estilo footer general*/
 footer{    
     background-color: #010a2b;  
     color:whitesmoke;

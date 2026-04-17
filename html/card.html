@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <link rel="stylesheet" href="/CSS/stylemodal.css">
+</head>
+<body>
+    <!---------------------------------modal----------------------------->
+<div class="modal"> 
+<div id="pokemon-modal" class="modal-overlay">
+    <div class="modal-glass-panel">
+ 
+        
+ 
+        <div class="modal-content-grid">
+ 
+            
+            <div class="modal-left">
+ 
+                <div class="modal-image-container">
+                    <div class="image-aura"></div>
+                    <img
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                        alt="Pikachu"
+                        class="hero-image"
+                        id="pokemon-img">
+                    
+                </div>
+ 
+                <h2 class="pokemon-title">Pikachu <span class="pokemon-id">#025</span></h2>
+ 
+                <p class="pokedex-description">
+                    Cuando almacena electricidad en las bolsas de sus mejillas, sus ojos brillan con una luz intensa.
+                </p>
+ 
+                <div class="modal-types">
+                    <span class="type-badge type-electric">⚡ Eléctrico</span>
+                </div>
+ 
+                <div class="pokemon-info-grid">
+                    <div class="info-item">
+                        <span class="label">Altura</span>
+                        <span class="value">0.4 m</span>
+                    </div>
+                    <div class="info-divider"></div>
+                    <div class="info-item">
+                        <span class="label">Peso</span>
+                        <span class="value">6.0 kg</span>
+                    </div>
+                    <div class="info-divider"></div>
+                    <div class="info-item">
+                        <span class="label">Exp.</span>
+                        <span class="value">112</span>
+                    </div>
+                </div>
+ 
+                <div class="pokemon-abilities">
+                    <h3>Habilidades</h3>
+                    <div class="abilities-list">
+                        <span class="ability-pill">Static</span>
+                        <span class="ability-pill">Lightning Rod</span>
+                    </div>
+                </div>
+ 
+            </div>
+ 
+            
+            <div class="modal-right">
+ 
+                <!-- Stats -->
+                <div>
+                    <p class="section-title">Estadísticas Base</p>
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-name">HP</span>
+                            <span class="stat-number">35</span>
+                            <div class="bar-bg"><div class="bar-fill hp" style="width:14%"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Ataque</span>
+                            <span class="stat-number">55</span>
+                            <div class="bar-bg"><div class="bar-fill atk" style="width:22%"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Defensa</span>
+                            <span class="stat-number">40</span>
+                            <div class="bar-bg"><div class="bar-fill def" style="width:16%"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Atk. Esp.</span>
+                            <span class="stat-number">50</span>
+                            <div class="bar-bg"><div class="bar-fill spatk" style="width:20%"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Def. Esp.</span>
+                            <span class="stat-number">50</span>
+                            <div class="bar-bg"><div class="bar-fill spdef" style="width:20%"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">Velocidad</span>
+                            <span class="stat-number">90</span>
+                            <div class="bar-bg"><div class="bar-fill spd" style="width:35%"></div></div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!--------------------- Movimientos ---------------------------------------------->
+                <div>
+                    <p class="section-title">Movimientos Principales</p>
+                    <div class="moves-container">
+                        <span class="move-pill">Thunderbolt</span>
+                        <span class="move-pill">Quick Attack</span>
+                        <span class="move-pill">Iron Tail</span>
+                        <span class="move-pill">Electro Ball</span>
+                        <span class="move-pill">Volt Tackle</span>
+                        <span class="move-pill">Thunder Wave</span>
+                    </div>
+                </div>
+ 
+                <!--evoluciones-->
+                <div>
+                    <p class="section-title">Cadena Evolutiva</p>
+                    <div class="evolution-chain">
+                        <div class="evo-item" >
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png" alt="Pichu">
+                            <span>Pichu</span>
+                        </div>
+                        <span class="evo-arrow">›</span>
+                        <div class="evo-item active">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+                            <span>Pikachu</span>
+                        </div>
+                        <span class="evo-arrow">›</span>
+                        <div class="evo-item" >
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png" alt="Raichu">
+                            <span>Raichu</span>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- boton lista-->
+                <button class="btn-wishlist"> ♡ Agregar a Favoritos</button>
+ 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+</body>
+</html>

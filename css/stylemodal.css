@@ -1,0 +1,368 @@
+
+:root {
+            --bg-dark:        #0d0a1a;
+            --bg-panel:       rgba(22, 14, 40, 0.75);
+            --bg-inner:       rgba(0, 0, 0, 0.35);
+            --border-purple:  rgba(138, 92, 255, 0.35);
+            --purple:         #8a5cff;
+            --purple-dim:     rgba(138, 92, 255, 0.15);
+            --text-main:      #f0ecff;
+            --text-muted:     #9b93bb;
+            --text-id:        rgba(138, 92, 255, 0.85);
+ 
+            /* stat colors */
+            --c-hp:    #ff5959;
+            --c-atk:   #ff9959;
+            --c-def:   #59ff9c;
+            --c-spatk: #c459ff;
+            --c-spdef: #59c4ff;
+            --c-spd:   #59e0ff;
+ 
+            /* type colors */
+            --t-electric: #ffd900;
+            --t-fire:     #ff6b35;
+            --t-water:    #4fc3f7;
+            --t-grass:    #66bb6a;
+            --t-poison:   #ab47bc;
+            --t-psychic:  #ec407a;
+            --t-ice:      #80deea;
+            --t-dragon:   #5e35b1;
+            --t-dark:     #4e342e;
+            --t-fighting: #ef5350;
+            --t-normal:   #bdbdbd;
+            --t-flying:   #90caf9;
+            --t-bug:      #aed581;
+            --t-rock:     #a1887f;
+            --t-ghost:    #7e57c2;
+            --t-steel:    #b0bec5;
+            --t-ground:   #d4a853;
+            --t-fairy:    #f48fb1;
+        }
+
+.modal {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+ 
+
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 5, 20, 0.88);
+            backdrop-filter: blur(14px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+
+        .modal-glass-panel {
+            position: relative;
+            width: 100%;
+            max-width: 880px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-purple);
+            border-radius: 24px;
+            padding: 40px;
+            color: var(--text-main);
+            box-shadow:
+                0 0 0 1px rgba(138,92,255,0.1),
+                0 20px 60px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-purple) transparent;
+        }
+
+
+        /* ------------------------------ GRID PRINCIPAL----------------------------*/
+        .modal-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            align-items: start;
+        }
+ 
+        /* izquierda*/
+        .modal-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+ 
+        /*imagen dinamina*/
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+ 
+        .hero-image {
+            position: relative;
+            width: 210px; height: 210px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 24px rgba(255, 217, 0, 0.35));
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), filter 0.3s;
+            z-index: 1;
+        }
+
+
+        /* Nombre id*/
+        .pokemon-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin: 14px 0 2px;
+            letter-spacing: 1px;
+        }
+        .pokemon-id {
+            color: var(--text-id);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+ 
+        /*descripcion pokedex*/
+        .pokedex-description {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.55;
+            margin: 8px 0 14px;
+            padding: 0 4px;
+        }
+ 
+        /* Tipos */
+        .modal-types {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border: 1px solid currentColor;
+        }
+        /* Info grid (altura / peso / exp) */
+        .pokemon-info-grid {
+            display: flex;
+            gap: 6px;
+            background: var(--bg-inner);
+            padding: 14px 18px;
+            border-radius: 14px;
+            width: 100%;
+            justify-content: space-around;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 18px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .info-item .label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-item .value {
+            font-weight: 800;
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .info-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.08);
+            align-self: stretch;
+        }
+ 
+        /* Habilidades */
+        .pokemon-abilities {
+            width: 100%;
+            background: var(--bg-inner);
+            border-radius: 14px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .pokemon-abilities h3 {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+        .abilities-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .ability-pill {
+            background: var(--purple-dim);
+            border: 1px solid var(--border-purple);
+            color: #cec0ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+ 
+        /* derecha*/
+        .modal-right { display: flex; flex-direction: column; gap: 24px; }
+ 
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid var(--border-purple);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+        }
+        /* Stats */
+        .stats-container { display: flex; flex-direction: column; gap: 9px; }
+        .stat-row {
+            display: grid;
+            grid-template-columns: 100px 38px 1fr;
+            align-items: center;
+            gap: 10px;
+        }
+        .stat-name { font-size: 0.82rem; color: var(--text-muted); }
+        .stat-number {
+            font-weight: 800;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            text-align: right;
+        }
+        .bar-bg {
+            height: 7px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bar-fill.hp    { background: var(--c-hp);    box-shadow: 0 0 8px var(--c-hp); }
+        .bar-fill.atk   { background: var(--c-atk);   box-shadow: 0 0 8px var(--c-atk); }
+        .bar-fill.def   { background: var(--c-def);   box-shadow: 0 0 8px var(--c-def); }
+        .bar-fill.spatk { background: var(--c-spatk); box-shadow: 0 0 8px var(--c-spatk); }
+        .bar-fill.spdef { background: var(--c-spdef); box-shadow: 0 0 8px var(--c-spdef); }
+        .bar-fill.spd   { background: var(--c-spd);   box-shadow: 0 0 8px var(--c-spd); }
+ 
+        /* Movimientos */
+        .moves-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .move-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 5px 13px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: default;
+        }
+        .move-pill:hover {
+            background: var(--purple-dim);
+            border-color: var(--border-purple);
+            color: #cec0ff;
+        }
+ 
+        /*evolcuiones*/
+        .evolution-chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--bg-inner);
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+        }
+        .evo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: transform 0.25s, opacity 0.25s;
+            opacity: 0.6;
+        }
+        .evo-item:hover { transform: translateY(-3px) scale(1.08); opacity: 1; }
+        .evo-item.active { opacity: 1; }
+        .evo-item img {
+            width: 56px; height: 56px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+        }
+        .evo-item span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .evo-item.active span { color: #fff; }
+        .evo-arrow {
+            color: var(--purple);
+            font-size: 1.3rem;
+            opacity: 0.7;
+        }
+        
+
+/* -----boton para agregar a favoritos--------------*/
+        .btn-wishlist {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--purple), #5e35b1);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(138,92,255,0.35);
+        }
+        .btn-wishlist:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(138,92,255,0.5);
+        }
+        .btn-wishlist:active { transform: translateY(0); }
+        
