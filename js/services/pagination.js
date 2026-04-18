@@ -12,7 +12,7 @@ export async function getListPokemon(offset) {
     let url =  `${BASE_URL}/pokemon`;
     let params = [];
 
-    params.push(`limit=${encodeURIComponent(10)}`);
+    params.push(`limit=${encodeURIComponent(12)}`);
 
     if (offset !== null) { 
         params.push(`offset=${encodeURIComponent(offset)}`);

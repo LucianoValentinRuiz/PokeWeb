@@ -224,6 +224,7 @@ main {
   margin-left: 5px;
 }
 
+/* --- Variantes por tipo --- */
 .type.grass {
   
   background-color: rgba(67, 160, 71, 0.2);
@@ -238,7 +239,101 @@ main {
   border: 1px solid rgba(229, 57, 53, 0.4);
 }
 
-/*------------------------------Pagination---------------------------------*/
+.type.water {
+  background-color: rgba(30, 136, 229, 0.2);
+  color: #90caf9;
+  border: 1px solid rgba(30, 136, 229, 0.4);
+}
+
+.type.bug {
+  background-color: rgba(154, 174, 52, 0.2);
+  color: #dce775;
+  border: 1px solid rgba(154, 174, 52, 0.4);
+}
+
+.type.normal {
+  background-color: rgba(170, 170, 153, 0.2);
+  color: #e0e0e0;
+  border: 1px solid rgba(170, 170, 153, 0.4);
+}
+
+.type.poison {
+  background-color: rgba(170, 85, 153, 0.2);
+  color: #ce93d8;
+  border: 1px solid rgba(170, 85, 153, 0.4);
+}
+
+.type.electric {
+  background-color: rgba(255, 185, 0, 0.2);
+  color: #fff59d;
+  border: 1px solid rgba(255, 185, 0, 0.4);
+}
+
+.type.ground {
+  background-color: rgba(221, 187, 85, 0.2);
+  color: #ffe082;
+  border: 1px solid rgba(221, 187, 85, 0.4);
+}
+
+.type.fairy {
+  background-color: rgba(238, 153, 238, 0.2);
+  color: #f48fb1;
+  border: 1px solid rgba(238, 153, 238, 0.4);
+}
+
+.type.fighting {
+  background-color: rgba(187, 85, 68, 0.2);
+  color: #ef9a9a;
+  border: 1px solid rgba(187, 85, 68, 0.4);
+}
+
+.type.psychic {
+  background-color: rgba(255, 85, 153, 0.2);
+  color: #f48fb1;
+  border: 1px solid rgba(255, 85, 153, 0.4);
+}
+
+.type.rock {
+  background-color: rgba(187, 170, 102, 0.2);
+  color: #d7ccc8;
+  border: 1px solid rgba(187, 170, 102, 0.4);
+}
+
+.type.ghost {
+  background-color: rgba(102, 102, 187, 0.2);
+  color: #b39ddb;
+  border: 1px solid rgba(102, 102, 187, 0.4);
+}
+
+.type.ice {
+  background-color: rgba(102, 204, 255, 0.2);
+  color: #b3e5fc;
+  border: 1px solid rgba(102, 204, 255, 0.4);
+}
+
+.type.dragon {
+  background-color: rgba(119, 102, 238, 0.2);
+  color: #c5cae9;
+  border: 1px solid rgba(119, 102, 238, 0.4);
+}
+
+.type.dark {
+  background-color: rgba(119, 85, 68, 0.2);
+  color: #bcaaa4;
+  border: 1px solid rgba(119, 85, 68, 0.4);
+}
+
+.type.steel {
+  background-color: rgba(170, 170, 187, 0.2);
+  color: #cfd8dc;
+  border: 1px solid rgba(170, 170, 187, 0.4);
+}
+
+.type.flying {
+  background-color: rgba(136, 153, 255, 0.2);
+  color: #9fa8da;
+  border: 1px solid rgba(136, 153, 255, 0.4);
+}/*------------------------------Pagination---------------------------------*/
 
 /*contenedor principal*/
 .pagination-container {

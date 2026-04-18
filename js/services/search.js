@@ -14,7 +14,8 @@ export async function getPokemonByName(name) {
         const result = [
             data.name,
             data.id,
-            data.sprites.other['official-artwork'].front_default
+            data.sprites.other['official-artwork'].front_default,
+            data.types['0'].type.name
         ];
 
         return result;

@@ -1,7 +1,7 @@
 import { getPokemonByName,getPokemonById } from '../services/search.js';
 import { getListPokemon } from '../services/pagination.js';
 
-async function iniciarApp() {
+/*async function iniciarApp() {
     // Aquí SÍ esperamos a que la función termine de buscar en la API
     const pokemon = await getPokemonByName("charmander");
     const pokemon2 = await getPokemonById(4);
@@ -11,8 +11,9 @@ async function iniciarApp() {
     console.log(pokemon2);
 }
 
-//iniciarApp();
-
+iniciarApp();*/
+let offset = 0;
+//--MAPEO DE POKEMONES--
 async function mapPokemon(listPokemon) {
     try {
         const pokemonPromises = listPokemon.map(name => getPokemonByName(name));
@@ -24,46 +25,86 @@ async function mapPokemon(listPokemon) {
     }
 }
 
+//--IMPRESION DINAMICA DE POKEMONES EN PAANTALLA--
 async function loadPokemon(offset) {
     let listapokemon = await getListPokemon(offset);
     let mapeoDePokemones = await mapPokemon(listapokemon);
-    console.log(mapeoDePokemones);
-    const sectionPrincipal = document.getElementById("prueba");
-    // Limpiamos la sección antes de cargar nuevos
+    
+    // 1. Seleccionamos el contenedor principal
+    const sectionPrincipal = document.getElementById("pokedex");
+    
+    // 2. Limpiamos y creamos el grid (pokedex-grid) que envuelve a las cards
     sectionPrincipal.innerHTML = "";
+    const pokedexGrid = document.createElement("div");
+    pokedexGrid.classList.add("pokedex-grid");
 
     mapeoDePokemones.forEach(pokemon => {
-        // 1. Crear el contenedor principal (article)
-        const article = document.createElement("article");
-        article.classList.add("pokemon-card"); // Una clase para tus CSS
+        // --- Estructura de la Card ---
+        const card = document.createElement("div");
+        card.classList.add("pokemon-card", "glass-card");
 
-        // 2. Div para el Nombre
-        const divNombre = document.createElement("div");
-        const linkNombre = document.createElement("a");
-        linkNombre.textContent = pokemon[0]; // El nombre
-        divNombre.appendChild(linkNombre);
-
-        // 3. Div para el ID
-        const divId = document.createElement("div");
-        const linkId = document.createElement("a");
-        linkId.textContent = `${pokemon[1]}`; // El ID
-        divId.appendChild(linkId);
-
-        // 4. Div para la Imagen
-        const divImagen = document.createElement("div");
+        // --- Contenedor de Imagen (image-circle) ---
+        const divImagenCircle = document.createElement("div");
+        divImagenCircle.classList.add("image-circle");
+        
         const imgPokemon = document.createElement("img");
-        imgPokemon.src = pokemon[2]; // La URL de la imagen
-        imgPokemon.alt = pokemon[0];
-        divImagen.appendChild(imgPokemon);
+        imgPokemon.src = pokemon[2]; // URL de la imagen
+        imgPokemon.alt = pokemon[0]; // Nombre para el alt
+        
+        divImagenCircle.appendChild(imgPokemon);
 
-        // 5. Armar la estructura: Meter los divs en el article
-        article.appendChild(divNombre);
-        article.appendChild(divId);
-        article.appendChild(divImagen);
+        // --- Contenedor de Contenido (card-content) ---
+        const divCardContent = document.createElement("div");
+        divCardContent.classList.add("card-content");
 
-        // 6. Meter el article en la sección principal del HTML
-        sectionPrincipal.appendChild(article);
+        // ID del Pokemon
+        const divId = document.createElement("div");
+        divId.classList.add("pokemon-id");
+        divId.textContent = `#${pokemon[1].toString().padStart(3, '0')}`;
+
+        // Nombre del Pokemon
+        const divNombre = document.createElement("div");
+        divNombre.classList.add("pokemon-name");
+        divNombre.textContent = pokemon[0];
+
+        // Tipo del Pokemon
+        const divTipo = document.createElement("div");
+        divTipo.classList.add("pokemon-type");
+        divTipo.innerHTML = `Tipo: <span class="type">Cargando...</span>`; 
+        divTipo.innerHTML = `Tipo: <span class="type ${pokemon[3]}">${pokemon[3]}</span>`;
+
+        // Ensamblamos el contenido de la card
+        divCardContent.appendChild(divId);
+        divCardContent.appendChild(divNombre);
+        divCardContent.appendChild(divTipo);
+
+        // --- Ensamblaje final de la Card ---
+        card.appendChild(divImagenCircle);
+        card.appendChild(divCardContent);
+
+        // Agregamos la card al grid
+        pokedexGrid.appendChild(card);
     });
+
+    // Finalmente, metemos el grid en la sección
+    sectionPrincipal.appendChild(pokedexGrid);
 }
 
-await loadPokemon(20);
+//--BOTONES DE PAGINAION--
+const PreviousButton = document.getElementById("first_button");
+PreviousButton.addEventListener("click", async () => {  
+    if(offset >= 12){
+        offset = offset-12;
+        await loadPokemon(offset);
+        //updatePaginationUI();
+    }
+})
+const NextButton = document.getElementById("second_button");
+NextButton.addEventListener("click", async () => {  
+    if(offset >= 0){
+        offset = offset+12;
+        await loadPokemon(offset);
+        //updatePaginationUI();
+    }
+})
+await loadPokemon(offset);
