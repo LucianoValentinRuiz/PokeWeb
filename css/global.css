@@ -1,0 +1,128 @@
+:root {
+            --bg-dark:        #0d0a1a;
+            --bg-panel:       rgba(22, 14, 40, 0.75);
+            --bg-inner:       rgba(0, 0, 0, 0.35);
+            --border-purple:  rgba(138, 92, 255, 0.35);
+            --purple:         #8a5cff;
+            --purple-dim:     rgba(138, 92, 255, 0.15);
+            --text-main:      #f0ecff;
+            --text-muted:     #9b93bb;
+            --text-id:        rgba(138, 92, 255, 0.85);
+            --background-color:#1e1f26;
+            --footer-color:#000209;
+ 
+            /*colores para las stats*/
+            --c-hp:    #ff5959;
+            --c-atk:   #ff9959;
+            --c-def:   #59ff9c;
+            --c-spatk: #c459ff;
+            --c-spdef: #59c4ff;
+            --c-spd:   #59e0ff;
+ 
+            /* colores para los tipos*/
+            --t-electric: #ffd900;
+            --t-fire:     #ff6b35;
+            --t-water:    #4fc3f7;
+            --t-grass:    #66bb6a;
+            --t-poison:   #ab47bc;
+            --t-psychic:  #ec407a;
+            --t-ice:      #80deea;
+            --t-dragon:   #5e35b1;
+            --t-dark:     #4e342e;
+            --t-fighting: #ef5350;
+            --t-normal:   #bdbdbd;
+            --t-flying:   #90caf9;
+            --t-bug:      #aed581;
+            --t-rock:     #a1887f;
+            --t-ghost:    #7e57c2;
+            --t-steel:    #b0bec5;
+            --t-ground:   #d4a853;
+            --t-fairy:    #f48fb1;
+        }
+
+html, body {
+    font-family: 'Nunito', sans-serif;
+    height: 100%;
+    margin: 0; /* Elimina márgenes predeterminados */
+    background-color:var(--background-color); 
+    
+}
+
+.wrapper{
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
+}
+
+/*-----------------------------------------------Menu Inicio------------------------------------------------*/
+
+.container-menu {
+    margin:0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    justify-content: flex-end /*lo coloca al fondo*/
+
+}
+
+.container-menu li{
+    list-style-type: none; /*saca las viñetas*/  
+    cursor: pointer; 
+    position: relative; /*necesario para que el submenú se posicione relativo al padre */
+    transition: background-color 0.3s ease;   
+    padding: 10px 20px;
+    width: auto;
+    
+}
+
+.container-menu a {
+    text-decoration: none;
+    color: white; 
+}
+
+.container-menu li:hover {
+    /*background-color: #575757; /* */
+    background-color: rgba(255, 255, 255, 0.05); 
+    color: #ffffff; /*el texto se ilumina */
+}
+
+/*estilo para el elemento activo */
+.container-menu li.active {
+    border-bottom: 5px solid #4255d4; /* Borde inferior cuando el elemento está activo */
+    background: #11132c;
+    
+}
+
+
+/*submenu*/
+.submenu{
+    position: absolute;
+    top: 100%;
+    left: 0 ;
+    padding: 0; /*elimina el padding extra */
+    display: none; 
+}
+
+
+/*mostrar el submenú al pasar el mouse */
+.dropdown:hover .submenu {
+    display: block;
+}
+
+
+/*------------------------------footer---------------------------------*/
+/*estilo footer general*/
+footer{    
+    background-color: var(--footer-color);  
+    color:whitesmoke;
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+}
+
+.footer-pok{    
+    text-align: center; /*centra el texto horizontalmente */
+    padding: 5px; 
+    background-color: var(--footer-color);
+}

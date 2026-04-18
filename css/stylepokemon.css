@@ -1,77 +1,23 @@
+.pokemon-information{
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--text-main);    
+    padding: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+                
 
-        /*----------boton cerrar----------*/
-        .close-modal-btn {
-            position: absolute;
-            top: 18px; right: 18px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--text-muted);
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.25s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .close-modal-btn:hover {
-            background: rgba(255,255,255,0.12);
-            color: var(--text-main);
-            transform: rotate(90deg);
-        }
-
-.modal {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 5, 20, 0.88);
-            backdrop-filter: blur(14px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 16px;
-        }
-
-        .modal-glass-panel {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            max-height: 92vh;
-            overflow-y: auto;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-purple);
-            border-radius: 24px;
-            padding: 40px;
-            color: var(--text-main);
-            box-shadow:
-                0 0 0 1px rgba(138,92,255,0.1),
-                0 20px 60px rgba(0,0,0,0.6),
-                inset 0 1px 0 rgba(255,255,255,0.05);
-            animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            scrollbar-width: thin;
-            scrollbar-color: var(--border-purple) transparent;
-        }
-
+}
 
         /* ------------------------------ GRID PRINCIPAL----------------------------*/
-        .modal-content-grid {
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 40px;
+            grid-template-columns: 1.2fr 1.4fr;
+            gap: 80px;
             align-items: start;
         }
  
         /* izquierda*/
-        .modal-left {
+        .info-left {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,7 +25,7 @@
         }
  
         /*imagen dinamina*/
-        .modal-image-container {
+        .info-image-container {
             position: relative;
             width: 100%;
             display: flex;
@@ -127,7 +73,7 @@
         }
  
         /* Tipos */
-        .modal-types {
+        .info-types {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
@@ -214,7 +160,7 @@
         }
  
         /* derecha*/
-        .modal-right { display: flex; flex-direction: column; gap: 24px; }
+        .info-right { display: flex; flex-direction: column; gap: 24px; }
  
         .section-title {
             

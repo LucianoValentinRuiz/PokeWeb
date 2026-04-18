@@ -1,74 +1,4 @@
-html, body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: rgb(201, 201, 201);
-    height: 100%;
-    margin: 0; /* Elimina márgenes predeterminados */
-    background-color:#1e1f26; 
-    
-}
 
-.wrapper{
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
-}
-
-/*-----------------------------------------------Menu Inicio------------------------------------------------*/
-
-.container-menu {
-    margin:0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    justify-content: flex-end /*lo coloca al fondo*/
-
-}
-
-.container-menu li{
-    list-style-type: none; /*saca las viñetas*/  
-    cursor: pointer; 
-    position: relative; /*necesario para que el submenú se posicione relativo al padre */
-    transition: background-color 0.3s ease;   
-    padding: 10px 20px;
-    width: auto;
-    
-}
-
-.container-menu a {
-    text-decoration: none;
-    color: white; 
-}
-
-.container-menu li:hover {
-    /*background-color: #575757; /* */
-    background-color: rgba(255, 255, 255, 0.05); 
-    color: #ffffff; /*el texto se ilumina */
-}
-
-/*estilo para el elemento activo */
-.container-menu li.active {
-    border-bottom: 5px solid #4255d4; /* Borde inferior cuando el elemento está activo */
-    background: #11132c;
-    
-}
-
-
-/*submenu*/
-.submenu{
-    position: absolute;
-    top: 100%;
-    left: 0 ;
-    padding: 0; /*elimina el padding extra */
-    display: none; 
-}
-
-
-/*mostrar el submenú al pasar el mouse */
-.dropdown:hover .submenu {
-    display: block;
-}
 
 
 /* ----------------------Fila Inferior (Buscador) ------------------------------- */
@@ -228,56 +158,56 @@ main {
 .type.grass {
   
   background-color: rgba(67, 160, 71, 0.2);
-  color: #a5d6a7;
+  color: var(--t-grass);
   border: 1px solid rgba(67, 160, 71, 0.4);
 }
 
 .type.fire {
   
   background-color: rgba(229, 57, 53, 0.2);
-  color: #ef9a9a;
+  color: var(--t-fire);
   border: 1px solid rgba(229, 57, 53, 0.4);
 }
 
 .type.water {
   background-color: rgba(30, 136, 229, 0.2);
-  color: #90caf9;
+  color: var(--t-water);
   border: 1px solid rgba(30, 136, 229, 0.4);
 }
 
 .type.bug {
   background-color: rgba(154, 174, 52, 0.2);
-  color: #dce775;
+  color: var(--t-bug);
   border: 1px solid rgba(154, 174, 52, 0.4);
 }
 
 .type.normal {
   background-color: rgba(170, 170, 153, 0.2);
-  color: #e0e0e0;
+  color: var(--t-normal);
   border: 1px solid rgba(170, 170, 153, 0.4);
 }
 
 .type.poison {
   background-color: rgba(170, 85, 153, 0.2);
-  color: #ce93d8;
+  color: var(--t-poison);
   border: 1px solid rgba(170, 85, 153, 0.4);
 }
 
 .type.electric {
   background-color: rgba(255, 185, 0, 0.2);
-  color: #fff59d;
+  color: var(--t-electric);
   border: 1px solid rgba(255, 185, 0, 0.4);
 }
 
 .type.ground {
   background-color: rgba(221, 187, 85, 0.2);
-  color: #ffe082;
+  color: var(--t-ground);
   border: 1px solid rgba(221, 187, 85, 0.4);
 }
 
 .type.fairy {
   background-color: rgba(238, 153, 238, 0.2);
-  color: #f48fb1;
+  color: var(--t-fairy);
   border: 1px solid rgba(238, 153, 238, 0.4);
 }
 
@@ -429,17 +359,3 @@ main {
 }
 
 
-/*------------------------------footer---------------------------------*/
-/*estilo footer general*/
-footer{    
-    background-color: #010a2b;  
-    color:whitesmoke;
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-}
-
-.footer-pok{    
-    text-align: center; /*centra el texto horizontalmente */
-    padding: 5px; 
-    background-color: #000812;
-}
