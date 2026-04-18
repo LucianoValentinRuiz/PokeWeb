@@ -1,4 +1,4 @@
-import { getPokemonByName,getPokemonById } from '../services/search.js';
+import { getPokemonMin,getPokemonById } from '../services/search.js';
 import { getListPokemon } from '../services/pagination.js';
 
 /*async function iniciarApp() {
@@ -10,13 +10,14 @@ import { getListPokemon } from '../services/pagination.js';
     console.log(pokemon); // Imprime: charmander
     console.log(pokemon2);
 }
-
 iniciarApp();*/
 let offset = 0;
+const limit = 12;
+
 //--MAPEO DE POKEMONES--
 async function mapPokemon(listPokemon) {
     try {
-        const pokemonPromises = listPokemon.map(name => getPokemonByName(name));
+        const pokemonPromises = listPokemon.map(name => getPokemonMin(name));
         const listMapPokemon = await Promise.all(pokemonPromises);
         return listMapPokemon; 
 
@@ -29,6 +30,7 @@ async function mapPokemon(listPokemon) {
 async function loadPokemon(offset) {
     let listapokemon = await getListPokemon(offset);
     let mapeoDePokemones = await mapPokemon(listapokemon);
+    const hayMasPáginas = listapokemon.length === limit; 
     
     // 1. Seleccionamos el contenedor principal
     const sectionPrincipal = document.getElementById("pokedex");
@@ -88,23 +90,57 @@ async function loadPokemon(offset) {
 
     // Finalmente, metemos el grid en la sección
     sectionPrincipal.appendChild(pokedexGrid);
+    
+    updatePaginationUI(hayMasPáginas);
 }
 
 //--BOTONES DE PAGINAION--
-const PreviousButton = document.getElementById("first_button");
-PreviousButton.addEventListener("click", async () => {  
+
+const pageNumbersContainer = document.querySelector(".page-numbers");
+const prevButton = document.getElementById("first_button");
+const nextButton = document.getElementById("second_button");
+
+async function updatePaginationUI(hasMoreData = true) {
+    const currentPage = (offset / limit) + 1;
+
+    // 1. Se limpia el contenedor
+    pageNumbersContainer.innerHTML = "";
+
+    // 2. Se muestra el rango anterior y siguiente de paginas
+    for (let i = Math.max(1, currentPage - 1); i <= currentPage + 1; i++) {
+        const btn = document.createElement("button");
+        btn.classList.add("page-btn");
+        if (i === currentPage) btn.classList.add("active");
+        btn.textContent = i;
+        
+        btn.onclick = async() => {
+            offset = (i - 1) * limit;
+            await loadPokemon(offset);
+        };
+        pageNumbersContainer.appendChild(btn);
+    }
+
+    // 3. Control de botones Anterior/Siguiente
+    prevButton.disabled = (offset === 0);
+    nextButton.disabled = !hasMoreData;
+}
+
+// Eventos para tus botones actuales
+prevButton.addEventListener("click", async () => {  
     if(offset >= 12){
         offset = offset-12;
         await loadPokemon(offset);
-        //updatePaginationUI();
+        updatePaginationUI();
     }
-})
-const NextButton = document.getElementById("second_button");
-NextButton.addEventListener("click", async () => {  
+});
+
+nextButton.addEventListener("click", async () => {  
     if(offset >= 0){
         offset = offset+12;
         await loadPokemon(offset);
-        //updatePaginationUI();
+        updatePaginationUI();
     }
-})
+});
+
+updatePaginationUI();
 await loadPokemon(offset);

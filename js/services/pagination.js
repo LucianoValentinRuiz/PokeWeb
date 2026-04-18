@@ -1,4 +1,4 @@
-const BASE_URL = `https://pokeapi.co/api/v2/`;
+import { BASE_URL } from './config.js';
 
 export async function getListPokemon(offset) {
     let config = {
@@ -38,13 +38,3 @@ export async function getListPokemon(offset) {
         console.log("Error:", error);
     }
 };
-
-/*async function iniciarApp() {
-    // Aquí SÍ esperamos a que la función termine de buscar en la API
-    const pokemon = await getListPokemon(0);
-    
-    console.log(pokemon);
-}
-
-iniciarApp();
-*/
