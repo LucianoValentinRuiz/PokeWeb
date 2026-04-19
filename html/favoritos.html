@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="/CSS/global.css">
+    <link rel="stylesheet" href="/CSS/stylefavoritos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header-container">
+            <div class="container-init">
+                <ul class="container-menu">
+                    <li class="active"><a href="#">Inicio</a></li>
+                    <li class="dropdown"><a href="#">Pokédex</a>
+                            <ul class="submenu">
+                                <li><a href="#">Tipos</a></li>
+                                <li><a href="#">Habilidades</a></li>
+                                
+                            </ul>
+                        </li>
+                    <li><a href="#">Explorar</a></li>
+                    <li><a href="#">Favoritos</a></li>
+                    <li><a href="#">Contacto</a></li>
+
+                </ul>
+                
+
+            </div>
+            
+        </div>
+    <main>
+        <div class="wishlist-header">
+            <h1>Favoritos</h1>
+            <div class="header-clear">
+                <div class="count-pok"> Total: <span id="count">3</span> Pokémon</div>
+                <button class ="btn-clear" id="btn-clear-all"> Limpiar</button>
+            </div>
+
+        </div>
+
+        <section class="wishlist-grid" id="wishlist-grid">
+            <div class="wish-info">
+                <div class="info-top">
+                    <div class="wish-img-wrap">
+                    <img class="wish-img"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                        alt="Pikachu">
+                    </div>
+                    <div class="wish-name">Pikachu</div>
+                    <div class="wish-id">#025</div>
+                    <div class="pokemon-type">
+                        <span class="type electric">Eléctrico</span>
+                    </div>
+                </div>
+
+                <div class="info-bottom">
+                    <!--info del pokemon-->
+                    <div class="wish-stats">
+                        <div class="mini-stat"><span class="s-label">HP</span><span class="s-val" style="color:#ff5959">35</span></div>
+                        <div class="mini-stat"><span class="s-label">ATK</span><span class="s-val" style="color:#ff9959">55</span></div>
+                        <div class="mini-stat"><span class="s-label">DEF</span><span class="s-val" style="color:#59ff9c">40</span></div>
+                        <div class="mini-stat"><span class="s-label">SPD</span><span class="s-val" style="color:#59e0ff">90</span></div>
+                    </div>
+                    <!--datos que se extraen del localStorage -->
+                    <div class="wish-extra" style="margin-top:10px;">
+                        <div class="extra-row">
+                            <span class="extra-key">Etiqueta</span>
+                            <span class="extra-val">Favorito</span>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-key">Prioridad</span>
+                            <span class="extra-val">5 / 5</span>
+                        </div>
+                        <div class="wish-note">Mi pokémon ...  ... </div>
+                    </div>
+                    <div class="wish-actions">
+                        <button class="btn-detail" >Ver detalle</button>
+                        <button class="btn-remove" >✕</button>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="wish-info">
+                <div class="info-top">
+                    <div class="wish-img-wrap">
+                    <img class="wish-img"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                        alt="Pikachu">
+                    </div>
+                    <div class="wish-name">Pikachu</div>
+                    <div class="wish-id">#025</div>
+                    <div class="pokemon-type">
+                        <span class="type electric">Eléctrico</span>
+                    </div>
+                </div>
+
+                <div class="info-bottom">
+                    <!--info del pokemon-->
+                    <div class="wish-stats">
+                        <div class="mini-stat"><span class="s-label">HP</span><span class="s-val" style="color:#ff5959">35</span></div>
+                        <div class="mini-stat"><span class="s-label">ATK</span><span class="s-val" style="color:#ff9959">55</span></div>
+                        <div class="mini-stat"><span class="s-label">DEF</span><span class="s-val" style="color:#59ff9c">40</span></div>
+                        <div class="mini-stat"><span class="s-label">SPD</span><span class="s-val" style="color:#59e0ff">90</span></div>
+                    </div>
+                    <!--datos que se extraen del localStorage -->
+                    <div class="wish-extra" style="margin-top:10px;">
+                        <div class="extra-row">
+                            <span class="extra-key">Etiqueta</span>
+                            <span class="extra-val">Favorito</span>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-key">Prioridad</span>
+                            <span class="extra-val">5 / 5</span>
+                        </div>
+                        <div class="wish-note">Mi pokémon ...  ... </div>
+                    </div>
+                    <div class="wish-actions">
+                        <button class="btn-detail" >Ver detalle</button>
+                        <button class="btn-remove" >✕</button>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div class="wish-info">
+                <div class="info-top">
+                    <div class="wish-img-wrap">
+                    <img class="wish-img"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                        alt="Pikachu">
+                    </div>
+                    <div class="wish-name">Pikachu</div>
+                    <div class="wish-id">#025</div>
+                    <div class="pokemon-type">
+                        <span class="type electric">Eléctrico</span>
+                    </div>
+                </div>
+
+                <div class="info-bottom">
+                    <!--info del pokemon-->
+                    <div class="wish-stats">
+                        <div class="mini-stat"><span class="s-label">HP</span><span class="s-val" style="color:#ff5959">35</span></div>
+                        <div class="mini-stat"><span class="s-label">ATK</span><span class="s-val" style="color:#ff9959">55</span></div>
+                        <div class="mini-stat"><span class="s-label">DEF</span><span class="s-val" style="color:#59ff9c">40</span></div>
+                        <div class="mini-stat"><span class="s-label">SPD</span><span class="s-val" style="color:#59e0ff">90</span></div>
+                    </div>
+                    <!--datos que se extraen del localStorage -->
+                    <div class="wish-extra" style="margin-top:10px;">
+                        <div class="extra-row">
+                            <span class="extra-key">Etiqueta</span>
+                            <span class="extra-val">Favorito</span>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-key">Prioridad</span>
+                            <span class="extra-val">5 / 5</span>
+                        </div>
+                        <div class="wish-note">Mi pokémon ...  ... </div>
+                    </div>
+                    <div class="wish-actions">
+                        <button class="btn-detail" >Ver detalle</button>
+                        <button class="btn-remove" >✕</button>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+ 
+        </section>
+
+        
+
+    </main>
+
+        <footer class="footer-container">
+        <div class="footer-pok">2026 Pokeweb. Todos los derechos reservados. </div>
+
+        </footer>
+
+    </div>
+    
+</body>
+</html>
