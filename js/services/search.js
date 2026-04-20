@@ -1,6 +1,6 @@
 import { BASE_URL } from './config.js';
 
-//Trae datos relacionaados con el videojuego
+//Llama a la api mas liviana con los datos necesarios
 export async function getPokemonMin(name) {
     let config = {
         method: 'GET',
@@ -55,7 +55,7 @@ export async function getPokemonByName(name) {
 //trae datos relacionados con la especie
 export async function getPokemonById(id) {
     try {
-        const response = await fetch(`${BASE_URL}/pokemon-form/${id}/`);
+        const response = await fetch(`${BASE_URL}/pokemon-species/${id}/`);
         
         if (!response.ok) {
             throw new Error(`No se encontró el Pokémon con ID: ${id}`);

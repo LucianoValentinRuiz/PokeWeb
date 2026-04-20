@@ -44,6 +44,10 @@ async function loadPokemon(offset) {
         // --- Estructura de la Card ---
         const card = document.createElement("div");
         card.classList.add("pokemon-card", "glass-card");
+        //Le agregamos el evento de redireccionamiento
+        card.addEventListener('click', () => {
+            redireccionamiento(pokemon[0]);
+        });
 
         // --- Contenedor de Imagen (image-circle) ---
         const divImagenCircle = document.createElement("div");
@@ -102,11 +106,9 @@ const nextButton = document.getElementById("second_button");
 
 async function updatePaginationUI(hasMoreData = true) {
     const currentPage = (offset / limit) + 1;
-
-    // 1. Se limpia el contenedor
     pageNumbersContainer.innerHTML = "";
 
-    // 2. Se muestra el rango anterior y siguiente de paginas
+    //Se muestra la pag anterior y siguiente correspondiente
     for (let i = Math.max(1, currentPage - 1); i <= currentPage + 1; i++) {
         const btn = document.createElement("button");
         btn.classList.add("page-btn");
@@ -120,12 +122,12 @@ async function updatePaginationUI(hasMoreData = true) {
         pageNumbersContainer.appendChild(btn);
     }
 
-    // 3. Control de botones Anterior/Siguiente
+    //Para la primera y ultima clase
     prevButton.disabled = (offset === 0);
     nextButton.disabled = !hasMoreData;
 }
 
-// Eventos para tus botones actuales
+// Eventos para los botones de pagina
 prevButton.addEventListener("click", async () => {  
     if(offset >= 12){
         offset = offset-12;
@@ -141,6 +143,11 @@ nextButton.addEventListener("click", async () => {
         updatePaginationUI();
     }
 });
+
+//Redireccionamiento de pagina a pokemon.js
+function redireccionamiento(pokemonName) {
+    window.location.href = `pokemon.html?name=${pokemonName}`;
+}
 
 updatePaginationUI();
 await loadPokemon(offset);
