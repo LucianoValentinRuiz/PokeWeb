@@ -1,37 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-    <link rel="stylesheet" href="/CSS/global.css">
-    <link rel="stylesheet" href="/CSS/styleformulario.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="wrapper">
-
-        <main>
-            <section class="form-information">
+<section class="form-information">
                 <div class="form-panel">
                     <button class="close-btn" id="btn-close">✕</button>
                     <div class="form-header">
                         <div class="poke-preview">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu">
+                            <img id="pokemonModal-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu">
                         </div>
                         <div class="poke-info">
-                            <div class="poke-name">Pikachu</div>
-                            <div class="poke-id">#025</div>
+                            <div id="pokemonModal-title" class="poke-name">Pikachu</div>
+                            <div id="pokemonModal-id" class="poke-id">#025</div>
                                 <div class="pokemon-type">
-                                    <span class="type electric">Eléctrico</span>
+                                    <span id="pokemonModal-type" class="type electric">Eléctrico</span>
                                 </div>
                             </div>
                         </div>
                          <div class="wish-stats">
-                            <div class="mini-stat"><span class="s-label">HP</span><span class="s-val" style="color:#ff5959">35</span></div>
-                            <div class="mini-stat"><span class="s-label">ATK</span><span class="s-val" style="color:#ff9959">55</span></div>
-                            <div class="mini-stat"><span class="s-label">DEF</span><span class="s-val" style="color:#59ff9c">40</span></div>
-                            <div class="mini-stat"><span class="s-label">SPD</span><span class="s-val" style="color:#59e0ff">90</span></div>
+                            <div class="mini-stat"><span class="s-label">HP</span><span id="pokemonModal-stats-hp" class="s-val" style="color:#ff5959">35</span></div>
+                            <div class="mini-stat"><span class="s-label">ATK</span><span id="pokemonModal-stats-atk" class="s-val" style="color:#ff9959">55</span></div>
+                            <div class="mini-stat"><span class="s-label">DEF</span><span id="pokemonModal-stats-def"  class="s-val" style="color:#59ff9c">40</span></div>
+                            <div class="mini-stat"><span class="s-label">SPD</span><span id="pokemonModal-stats-speed" class="s-val" style="color:#59e0ff">90</span></div>
                         </div>
                         <div class="form-title">Agregar a favoritos</div>
                         <!--formulario la variante b-->
@@ -91,10 +77,5 @@
  
         
 
-            </section>
-        </main>
-
-    </div>
-    
-</body>
-</html>
+</section>
+<script type="module" src="../js/components/pokemonForm.js"></script>

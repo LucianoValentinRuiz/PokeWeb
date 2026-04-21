@@ -1,18 +1,16 @@
 import { getPokemonMin,getPokemonById } from '../services/search.js';
 import { getListPokemon } from '../services/pagination.js';
+import { getListFilterType } from '../services/filter.js';
 
-/*async function iniciarApp() {
-    // Aquí SÍ esperamos a que la función termine de buscar en la API
-    const pokemon = await getPokemonByName("charmander");
-    const pokemon2 = await getPokemonById(4);
-    
-    // Ahora 'pokemon' es el objeto JSON, no la promesa
-    console.log(pokemon); // Imprime: charmander
-    console.log(pokemon2);
-}
-iniciarApp();*/
 let offset = 0;
 const limit = 12;
+let datoFiltro = null;
+let datoFuncion = null
+
+//--BOTONES DE PAGINAION--
+const pageNumbersContainer = document.querySelector(".page-numbers");
+const prevButton = document.getElementById("first_button");
+const nextButton = document.getElementById("second_button");
 
 //--MAPEO DE POKEMONES--
 async function mapPokemon(listPokemon) {
@@ -27,8 +25,10 @@ async function mapPokemon(listPokemon) {
 }
 
 //--IMPRESION DINAMICA DE POKEMONES EN PAANTALLA--
-async function loadPokemon(offset) {
-    let listapokemon = await getListPokemon(offset);
+export async function loadPokemon(dato, miFuncion) {
+    datoFiltro = dato;
+    datoFuncion = miFuncion;
+    let listapokemon = await miFuncion(dato,offset);
     let mapeoDePokemones = await mapPokemon(listapokemon);
     const hayMasPáginas = listapokemon.length === limit; 
     
@@ -95,16 +95,11 @@ async function loadPokemon(offset) {
     // Finalmente, metemos el grid en la sección
     sectionPrincipal.appendChild(pokedexGrid);
     
-    updatePaginationUI(hayMasPáginas);
+    await updatePaginationUI(dato,miFuncion ,hayMasPáginas);
 }
 
-//--BOTONES DE PAGINAION--
-
-const pageNumbersContainer = document.querySelector(".page-numbers");
-const prevButton = document.getElementById("first_button");
-const nextButton = document.getElementById("second_button");
-
-async function updatePaginationUI(hasMoreData = true) {
+//--NUM DE PAGINAS--
+export async function updatePaginationUI(dato,miFuncion, hasMoreData = true) {
     const currentPage = (offset / limit) + 1;
     pageNumbersContainer.innerHTML = "";
 
@@ -117,7 +112,7 @@ async function updatePaginationUI(hasMoreData = true) {
         
         btn.onclick = async() => {
             offset = (i - 1) * limit;
-            await loadPokemon(offset);
+            await loadPokemon(dato,miFuncion);
         };
         pageNumbersContainer.appendChild(btn);
     }
@@ -127,27 +122,30 @@ async function updatePaginationUI(hasMoreData = true) {
     nextButton.disabled = !hasMoreData;
 }
 
-// Eventos para los botones de pagina
-prevButton.addEventListener("click", async () => {  
-    if(offset >= 12){
-        offset = offset-12;
-        await loadPokemon(offset);
-        updatePaginationUI();
-    }
-});
+    prevButton.addEventListener("click", async () => {  
+        if(offset >= 12){
+            offset = offset - 12;
+            await loadPokemon(datoFiltro, datoFuncion);
+        }
+    });
 
-nextButton.addEventListener("click", async () => {  
-    if(offset >= 0){
-        offset = offset+12;
-        await loadPokemon(offset);
-        updatePaginationUI();
-    }
-});
+    // Evento para el botón de avance
+    nextButton.addEventListener("click", async () => {  
+        if(offset >= 0){
+            offset = offset + 12;
+            await loadPokemon(datoFiltro, datoFuncion);
+            console.log("se ejecuto")
+        }
+    });
 
-//Redireccionamiento de pagina a pokemon.js
+//--REDIRECCIONAMIENTO DE PAGINA A pokemon.html
 function redireccionamiento(pokemonName) {
     window.location.href = `pokemon.html?name=${pokemonName}`;
 }
 
-updatePaginationUI();
-await loadPokemon(offset);
+//await updatePaginationUI();
+await loadPokemon(datoFiltro,getListPokemon);
+
+export function setOffset(nuevoValor) {
+    offset = nuevoValor;
+}

@@ -144,3 +144,9 @@ async function cargarCadenaEvolutiva(miPokemonSpecies, nombreActual) {
         }
     }
 }
+
+//Agregamos la funcion active al boton de favoritos cuando se guarda
+export function botonActive(){
+    const btn = document.getElementById('btn-open-modal');
+    btn.addEventListener('click', () => {btn.classList.add('active');});
+}

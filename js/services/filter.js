@@ -1,24 +1,26 @@
 import { BASE_URL } from './config.js';
 
 // Filtro por Tipo (Fire, Water, etc.)
-export async function getListFilterType(type) {
+export async function getListFilterType(type,offset) {
     try {
         const response = await fetch(`${BASE_URL}/type/${type}`);
         
         if (!response.ok) {
             throw new Error(`No se encontró el tipo: ${type}`);
         }
-
         const data = await response.json();
-        // Mapeamos para obtener una lista uniforme de nombres/urls
-        return data.pokemon.map(p => p.pokemon); 
+        const pokemonNames = data.pokemon
+            .slice(offset, (12+offset))
+            .map(p => p.pokemon.name);
+
+        return pokemonNames;
     } catch (error) {
         console.error("Error al buscar por Tipo:", error);
     }
 }
 
 //Filtro por Generación (1, 2, 3...)
-export async function getListFilterGeneration(gen) {
+export async function getListFilterGeneration(gen,offset) {
     try {
         const response = await fetch(`${BASE_URL}/generation/${gen}`);
         
@@ -27,14 +29,17 @@ export async function getListFilterGeneration(gen) {
         }
 
         const data = await response.json();
-        return data.pokemon_species; 
+        const pokemonNames = data.pokemon_species
+            .slice(offset, (12+offset))
+            .map(p => p.name);
+        return pokemonNames;
     } catch (error) {
         console.error("Error al buscar por Generación:", error);
     }
 }
 
 //Filtro por Hábitat (Cave, Forest, etc.)
-export async function getListFilterHabitat(habitat) {
+export async function getListFilterHabitat(habitat,offset) {
     try {
         const response = await fetch(`${BASE_URL}/pokemon-habitat/${habitat}`);
         
@@ -43,30 +48,38 @@ export async function getListFilterHabitat(habitat) {
         }
 
         const data = await response.json();
-        return data.pokemon_species;
+        const pokemonNames = data.pokemon_species
+            .slice(offset, (12+offset))
+            .map(p => p.name);
+        return pokemonNames;
     } catch (error) {
         console.error("Error al buscar por Hábitat:", error);
     }
 }
 
 //Filtro por Color (Red, Blue, etc.)
-export async function getListFilterColor(color) {
+export async function getListFilterColor(color, offset) {
     try {
-        const response = await fetch(`${BASE_URL}/pokemon-color/${color}`);
+        const response = await fetch(`${BASE_URL}/pokemon-color/${color.toLowerCase()}`);
         
         if (!response.ok) {
             throw new Error(`No se encontró el color: ${color}`);
         }
 
         const data = await response.json();
-        return data.pokemon_species;
+        const pokemonNames = data.pokemon_species
+            .slice(offset, (12+offset)) 
+            .map(p => p.name); 
+
+        return pokemonNames;
     } catch (error) {
         console.error("Error al buscar por Color:", error);
+        return [];
     }
 }
 
 //Filtro por Forma (Ball, Fish, etc.)
-export async function getListFilterShape(shape) {
+export async function getListFilterShape(shape,offset) {
     try {
         const response = await fetch(`${BASE_URL}/pokemon-shape/${shape}`);
         
@@ -75,14 +88,17 @@ export async function getListFilterShape(shape) {
         }
 
         const data = await response.json();
-        return data.pokemon_species;
+        const pokemonNames = data.pokemon_species
+            .slice(offset, (12+offset))
+            .map(p => p.name);
+        return pokemonNames;
     } catch (error) {
         console.error("Error al buscar por Forma:", error);
     }
 }
 
 //Filtro por Región (kanto, johto, hoenn, etc.)
-export async function getListFilterRegion(region) {
+export async function getListFilterRegion(region,offset) {
     try {
         const response = await fetch(`${BASE_URL}/pokedex/${region}`);
         
@@ -91,7 +107,11 @@ export async function getListFilterRegion(region) {
         }
         
         const data = await response.json();
-        return data.pokemon_entries.map(entry => entry.pokemon_species);
+        const pokemonNames = data.pokemon_entries.map(entry => entry.pokemon_species)
+            .slice(offset, (12+offset))
+            .map(p => p.name);
+        return pokemonNames;
+        
     } catch (error) {
         console.error("Error al buscar por Región:", error);
     }

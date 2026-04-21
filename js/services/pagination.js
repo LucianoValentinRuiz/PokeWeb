@@ -1,6 +1,6 @@
 import { BASE_URL } from './config.js';
 
-export async function getListPokemon(offset) {
+export async function getListPokemon(dato,offset) {
     let config = {
         method: 'GET',
         headers: {
