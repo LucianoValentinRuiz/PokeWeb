@@ -1,16 +1,42 @@
 import { getPokemonByName, getPokemonById, getPokemonMin } from '../services/search.js';
-import { botonActive } from './pokemon.js';
 
 const params = new URLSearchParams(window.location.search);
 const pokemonSelected = params.get('name');
 
-console.log(pokemonSelected);
+// 1. Seleccionamos el botón inmediatamente sin esperar a la API
+console.log("--- TEST DE DIAGNÓSTICO ---");
+const btnPrueba = document.getElementById('btn-open-modal');
+console.log("¿El JS encontró el botón en el HTML?:", btnPrueba);
+console.log("---------------------------");
+const container = document.getElementById('modal-container');
 
-const miPokemon = await getPokemonByName(pokemonSelected);
+// 2. Asignamos el evento click
+btnPrueba.addEventListener('click', async () => {
+    console.log("¡El evento funciona!");
+    
+    try {
+        // 3. Cargamos el HTML del modal
+        const response = await fetch('formulario.html'); // Asegúrate que la ruta sea correcta
+        const htmlText = await response.text();
+        container.innerHTML = htmlText;
 
-async function imprimirPokemon(miPokemon) {
+        // 4. Recién ahora, pedimos los datos a la API (o usamos los que ya teníamos)
+        const miPokemon = await getPokemonByName(pokemonSelected);
+        imprimirPokemonModal(miPokemon); 
+
+        setupModalLogic();
+        saveModalLogic(); // Corregido el nombre (tenía 'c' en vez de 'g')
+        setupPrioridad();
+
+    } catch (error) {
+        console.error("Error cargando el modal:", error);
+    }
+});
+
+// Cambié el nombre de la función ligeramente para que no choque visualmente con la de pokemon.js
+function imprimirPokemonModal(miPokemon) {
     document.getElementById('pokemonModal-title').textContent = ((miPokemon.name).charAt(0).toUpperCase() + (miPokemon.name).slice(1));
-    document.getElementById('pokemonModal-id').textContent = `#${(miPokemon.id).toString().padStart(3, '0')}`;;
+    document.getElementById('pokemonModal-id').textContent = `#${(miPokemon.id).toString().padStart(3, '0')}`;
     document.getElementById('pokemonModal-type').textContent = miPokemon.types['0'].type.name;
     document.getElementById('pokemonModal-img').src = miPokemon.sprites.other['official-artwork'].front_default;
 
@@ -20,38 +46,18 @@ async function imprimirPokemon(miPokemon) {
     'defense': 'pokemonModal-stats-def',
     'speed': 'pokemonModal-stats-speed'
     };
+    
     miPokemon.stats.forEach(item => {
-    const statName = item.stat.name;
-    const baseValue = item.base_stat;
-    const elementId = statsMap[statName];
+        const statName = item.stat.name;
+        const baseValue = item.base_stat;
+        const elementId = statsMap[statName];
 
-    if (elementId) {
-        const spanElement = document.getElementById(elementId);
-        spanElement.textContent = baseValue;
+        if (elementId) {
+            const spanElement = document.getElementById(elementId);
+            if(spanElement) spanElement.textContent = baseValue;
         }
     });
-};
-
-//--ABRIR MODAL--
-const btnOpen = document.getElementById('btn-open-modal');
-const container = document.getElementById('modal-container');
-
-btnOpen.addEventListener('click', async () => {
-    try {
-        const response = await fetch('formulario.html');
-        const htmlText = await response.text();
-        container.innerHTML = htmlText;
-
-        setupModalLogic();
-        saveModalLocic();
-        await imprimirPokemon (miPokemon);
-        setupPrioridad()
-
-        
-    } catch (error) {
-        console.error("Error cargando el modal:", error);
-    }
-});
+}
 
 //--PRIORIDAD MODAL--
 function setupPrioridad() {
@@ -60,7 +66,6 @@ function setupPrioridad() {
     const priorityLabel = document.getElementById('priority-label');
     const stars = starsContainer.querySelectorAll('.star');
 
-    // Diccionario para los textos de prioridad
     const labels = {
         1: 'Muy Baja',
         2: 'Baja',
@@ -68,20 +73,15 @@ function setupPrioridad() {
         4: 'Alta',
         5: 'Muy Alta'
     };
-    //evento al clickear una estrella
+    
     starsContainer.addEventListener('click', (e) => {
         const clickedStar = e.target.closest('.star');
         if (!clickedStar) return;
 
         const val = parseInt(clickedStar.getAttribute('data-val'));
-
-        // valor de prioridad
         priorityInput.value = val;
-
-        //c ambiamos el texto del label
         priorityLabel.textContent = labels[val];
 
-        // le agregamos o removemos la clase active a las estrellas
         stars.forEach(star => {
             const starVal = parseInt(star.getAttribute('data-val'));
             if (starVal <= val) {
@@ -95,7 +95,7 @@ function setupPrioridad() {
 
 //--CERRAR MODAL--
 function setupModalLogic() {
-    const modal = document.getElementById('modal-pokemon');
+    // Eliminé 'const modal = document.getElementById('modal-pokemon');' porque no existía ese ID
     const btnClose = document.getElementById('btn-close');
     const btnCancel = document.getElementById('btn-cancel');
 
@@ -103,33 +103,36 @@ function setupModalLogic() {
         container.innerHTML = '';
     };
 
-    btnClose.addEventListener('click', closeModal);
-    btnCancel.addEventListener('click', closeModal);
+    if(btnClose) btnClose.addEventListener('click', closeModal);
+    if(btnCancel) btnCancel.addEventListener('click', closeModal);
 }
 
 //--BOTON GUARDAR--
-function saveModalLocic(){
+function saveModalLogic(){ // Nombre corregido
     const btnSave = document.getElementById('btn-save');
+    
+    if(!btnSave) return; // Evita errores si el botón no cargó
+    
     btnSave.addEventListener('click', () => {
         const priority = document.getElementById('f-priority').value;
         const label = document.getElementById('f-label').value.trim();
         const note = document.getElementById('f-note').value.trim();
+        
         const pokemonFavorito = {
             name: pokemonSelected,
-            priority: parseInt(priority),
+            priority: parseInt(priority) || 0, // Fallback por si está vacío
             category: label,
             comment: note || "Sin nota"
         };
+        
         console.log("Datos a guardar:", pokemonFavorito);
-        //lo guardp en el localStorage
         saveToLocalStorage(pokemonFavorito);
-        //le doy la clase active al boton
+        
         const btn = document.getElementById('btn-open-modal');
-        btn.addEventListener('click', () => { btn.classList.add('active');});
-        botonActive();
-        container.innerHTML = '';
+        btn.classList.add('active'); // Directamente le damos la clase
+        
+        container.innerHTML = ''; // Cerramos modal
     });
-
 }
 
 function saveToLocalStorage(pokemon) {
@@ -139,17 +142,15 @@ function saveToLocalStorage(pokemon) {
 
     try {
         const parsedData = JSON.parse(storedData);
-        
         if (Array.isArray(parsedData)) {
             list = parsedData;
         } else {
             console.warn("Se encontró data corrupta en LocalStorage, reseteando lista.");
-            list = [];
         }
     } catch (error) {
         console.error("Error al leer LocalStorage:", error);
-        list = [];
     }
+    
     list.push(pokemon);
     localStorage.setItem(key, JSON.stringify(list));
 }

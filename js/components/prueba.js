@@ -1,6 +1,7 @@
 import { getPokemonMin,getPokemonById } from '../services/search.js';
 import { getListPokemon } from '../services/pagination.js';
 import { getListFilterType } from '../services/filter.js';
+import { redireccionamiento } from './redireccionamiento.js';
 
 let offset = 0;
 const limit = 12;
@@ -13,7 +14,7 @@ const prevButton = document.getElementById("first_button");
 const nextButton = document.getElementById("second_button");
 
 //--MAPEO DE POKEMONES--
-async function mapPokemon(listPokemon) {
+export async function mapPokemon(listPokemon) {
     try {
         const pokemonPromises = listPokemon.map(name => getPokemonMin(name));
         const listMapPokemon = await Promise.all(pokemonPromises);
@@ -138,14 +139,29 @@ export async function updatePaginationUI(dato,miFuncion, hasMoreData = true) {
         }
     });
 
-//--REDIRECCIONAMIENTO DE PAGINA A pokemon.html
-function redireccionamiento(pokemonName) {
-    window.location.href = `pokemon.html?name=${pokemonName}`;
-}
-
 //await updatePaginationUI();
 await loadPokemon(datoFiltro,getListPokemon);
 
 export function setOffset(nuevoValor) {
     offset = nuevoValor;
 }
+
+//--BUSCADOR--
+const searchInput = document.querySelector('.search-input');
+searchInput.addEventListener('keypress', async (event) => {
+    if (event.key === 'Enter') {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (!searchTerm) return;
+        searchInput.disabled = true; 
+        const pokemonData = await getPokemonMin(searchTerm);
+        if (pokemonData) {
+            redireccionamiento(searchTerm);
+        } 
+        else {
+            alert(`¡Ups! No se encontró ningún Pokémon llamado "${searchTerm}".`);
+            searchInput.disabled = false;
+            searchInput.value = '';
+            searchInput.focus();
+        }
+    }
+});

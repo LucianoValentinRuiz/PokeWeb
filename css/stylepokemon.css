@@ -293,7 +293,7 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 28px rgba(138,92,255,0.5);
         }
-        .btn-wishlist:active {
+        /*.btn-wishlist:active {
             transform: translateY(0);
             pointer-events: none;
             opacity: 0.7; 
@@ -302,5 +302,5 @@
             pointer-events: none;
             cursor: default;
             filter: brightness(0.8);
-            }
+            }*/
         

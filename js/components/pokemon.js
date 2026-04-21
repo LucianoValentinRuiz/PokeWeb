@@ -9,7 +9,9 @@ const miPokemon = await getPokemonByName(pokemonSelected);
 const miPokemonBio = await getPokemonById(pokemonSelected);
 
 async function imprimirPokemon(miPokemon, miPokemonBio) {
-    // 1. INFO DEL POKEMON
+    //GUARDAMOS EL POKEMON
+    guardarEnHistorial(pokemonSelected);
+    //INFO DEL POKEMON
     document.getElementById('pokemon-title').textContent = ((miPokemon.name).charAt(0).toUpperCase() + (miPokemon.name).slice(1));
     document.getElementById('pokemon-id').textContent = `#${(miPokemon.id).toString().padStart(3, '0')}`;;
     document.getElementById('pokemon-type').textContent = miPokemon.types['0'].type.name;
@@ -20,7 +22,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
     document.getElementById('pokemon-info-peso').textContent = `${(miPokemon.weight/10)} kg`;
     document.getElementById('pokemon-info-exp').textContent = `${(miPokemon.base_experience)} xp`;
 
-    //3.DESCRIPCION DEL POKEMON
+    //DESCRIPCION DEL POKEMON
     if (miPokemonBio && miPokemonBio.flavor_text_entries) {
     let descripcion = miPokemonBio.flavor_text_entries.find(entry => entry.language.name === 'es');
     if (!descripcion) {
@@ -40,7 +42,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
         console.error("No se encontró la base de datos de descripciones.");
     }
 
-    //4.HABILIDADES DEL POKEMON
+    //HABILIDADES DEL POKEMON
     const abilitiesContainer = document.getElementById('abilities-list');
     miPokemon.abilities.forEach(item => {
         const spanAbility = document.createElement('span');
@@ -55,7 +57,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
         abilitiesContainer.appendChild(spanAbility);
     });
 
-    //4.STATS DEL POKEMON
+    //STATS DEL POKEMON
     const statsMap = {
     'hp': 'pokemon-stats-hp',
     'attack': 'pokemon-stats-atk',
@@ -83,7 +85,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
         }
     });
 
-    //5.HABILIDADES DEL POKEMON
+    //HABILIDADES DEL POKEMON
     const movesContainer = document.getElementById('moves-container');
     const movimientos = miPokemon.moves.slice(0, 12); //lo limitamos a 12 para no sobrecargar
 
@@ -101,9 +103,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
 
     }
 
-    await imprimirPokemon(miPokemon, miPokemonBio);
-
-    //FUNCION PARA IMPRIMIR LA CADENA EVOLUTIVA
+//FUNCION PARA IMPRIMIR LA CADENA EVOLUTIVA
 async function cargarCadenaEvolutiva(miPokemonSpecies, nombreActual) {
     const container = document.querySelector('.evolution-chain');
     container.innerHTML = '';
@@ -146,8 +146,21 @@ async function cargarCadenaEvolutiva(miPokemonSpecies, nombreActual) {
     }
 }
 
-//Agregamos la funcion active al boton de favoritos cuando se guarda
-export function botonActive(){
-    const btn = document.getElementById('btn-open-modal');
-    btn.addEventListener('click', () => {btn.classList.add('active');});
-}
+const guardarEnHistorial = (nombre) => {
+    const CLAVE = 'historial';
+    const limite = 12;
+
+    let historial = JSON.parse(localStorage.getItem(CLAVE)) || [];
+    historial = historial.filter(item => item.nombre !== nombre);
+    const nuevoRegistro = {
+        nombre: nombre,
+        fechaVisita: new Date().toISOString() 
+    };
+    historial.push(nuevoRegistro);
+    if (historial.length > limite) {
+        historial.shift();
+    }
+    localStorage.setItem(CLAVE, JSON.stringify(historial));
+};
+
+await imprimirPokemon(miPokemon, miPokemonBio);

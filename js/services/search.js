@@ -1,29 +1,31 @@
 import { BASE_URL } from './config.js';
 
-//Llama a la api mas liviana con los datos necesarios
 export async function getPokemonMin(name) {
     let config = {
         method: 'GET',
-        headers:
-        {
-            'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
     }
+    
     try {
         const response = await fetch(`${BASE_URL}/pokemon-form/${name}/`, config);
+        if (!response.ok) {
+            return null;
+        }
+
         let data = await response.json();
+        
         const result = [
             data.name,
             data.id,
             data.sprites.front_default,
-            //data.sprites.other['official-artwork'].front_default,
             data.types['0'].type.name
         ];
 
         return result;
     }
     catch(error) {
-        console.log(error);
+        console.error("Error en la petición:", error);
+        return null;
     }
 }
 
