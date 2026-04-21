@@ -56,15 +56,49 @@ html, body {
 }
 
 /*-----------------------------------------------Menu Inicio------------------------------------------------*/
+.navbar 
+{
+    position: sticky; top: 0; z-index: 200;
+    background: var(--bg-nav);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-purple);
+    padding: 0 32px;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; flex-shrink: 0;
+        }
 
+.logo-img img {
+    height: 40px; 
+    width: auto;  
+    display: block; 
+}
+
+.logo-text 
+{
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.45rem; font-weight: 700;
+    letter-spacing: 0.5px;
+           
+    background: linear-gradient(135deg, #fff 0%, var(--purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 .container-menu {
     margin:0;
     padding: 0;
     display: flex;
     flex-direction: row;
     gap: 0px;
-    justify-content: flex-end /*lo coloca al fondo*/
-
+    justify-content: flex-end; /*lo coloca al fondo*/
+    
 }
 
 .container-menu li{
@@ -74,24 +108,15 @@ html, body {
     transition: background-color 0.3s ease;   
     padding: 10px 20px;
     width: auto;
+    padding: 8px 14px; border-radius: 10px;
+            
+            
     
 }
 
 .container-menu a {
     text-decoration: none;
-    color: white; 
-}
-
-.container-menu li:hover {
-    /*background-color: #575757; /* */
-    background-color: rgba(255, 255, 255, 0.05); 
-    color: #ffffff; /*el texto se ilumina */
-}
-
-/*estilo para el elemento activo */
-.container-menu li.active {
-    border-bottom: 5px solid #4255d4; /* Borde inferior cuando el elemento está activo */
-    background: #11132c;
+    color:var(--text-muted);
     
 }
 
@@ -109,13 +134,52 @@ html, body {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 0px;
+    background:  #2a1a4a; 
+    font-size: 0.88rem; font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+            
 }
+.submenu li a {
+    display: block; 
+    padding: 5px 10px; 
+    color: var(--text-muted); 
+    text-decoration: none;
+    transition: all 0.2s ease; 
+}
+
+.submenu :hover{
+  color:var(--text-main);
+  background:  #1a0d35;
+
+}
+
+.nav-link {
+            display: flex; align-items: center; gap: 5px;
+            color: var(--text-muted); text-decoration: none;
+            padding: 8px 14px; border-radius: 10px;
+            font-size: 0.88rem; font-weight: 700;
+            transition: color 0.2s, background 0.2s;
+            white-space: nowrap; cursor: pointer;
+            border: none; background: none;
+            font-family: 'Nunito', sans-serif;
+            user-select: none;
+        }
+.chevron {
+            width: 12px; height: 12px;
+            transition: transform 0.25s;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
 
 
 /*mostrar el submenú al pasar el mouse */
 .dropdown:hover .submenu {
     display: block;
 }
+
+
+
 
 /*----------------------------tipo -------------------------------------*/
 

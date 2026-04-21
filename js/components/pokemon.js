@@ -97,6 +97,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
 
         //7.CADENA EVOLUTIVA
         await cargarCadenaEvolutiva(miPokemonBio,miPokemon.nombre);
+        
 
     }
 
