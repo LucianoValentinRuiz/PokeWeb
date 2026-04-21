@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="/CSS/global.css">
+    <link rel="stylesheet" href="/CSS/styleformulario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+
+        <main>
+            <section class="form-information">
+                <div class="form-panel">
+                    <button class="close-btn" id="btn-close">✕</button>
+                    <div class="form-header">
+                        <div class="poke-preview">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="Pikachu">
+                        </div>
+                        <div class="poke-info">
+                            <div class="poke-name">Pikachu</div>
+                            <div class="poke-id">#025</div>
+                                <div class="pokemon-type">
+                                    <span class="type electric">Eléctrico</span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="wish-stats">
+                            <div class="mini-stat"><span class="s-label">HP</span><span class="s-val" style="color:#ff5959">35</span></div>
+                            <div class="mini-stat"><span class="s-label">ATK</span><span class="s-val" style="color:#ff9959">55</span></div>
+                            <div class="mini-stat"><span class="s-label">DEF</span><span class="s-val" style="color:#59ff9c">40</span></div>
+                            <div class="mini-stat"><span class="s-label">SPD</span><span class="s-val" style="color:#59e0ff">90</span></div>
+                        </div>
+                        <div class="form-title">Agregar a favoritos</div>
+                        <!--formulario la variante b-->
+                        <div class="form-body">
+                            <div class="fgroup">
+                                <label>
+                                    <span class="required-dot"></span>
+                                    Prioridad
+                                </label>
+                            <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="stars-wrap" id="stars">
+                            <div class="star" data-val="1">★</div>
+                            <div class="star" data-val="2">★</div>
+                            <div class="star" data-val="3">★</div>
+                            <div class="star" data-val="4">★</div>
+                            <div class="star" data-val="5">★</div>
+                        </div>
+                        <span class="priority-label" id="priority-label">Sin seleccionar</span>
+                    </div>
+                    <input type="hidden" id="f-priority" value="">
+                    <div class="error-msg" id="e-priority">Seleccioná una prioridad del 1 al 5.</div>
+                </div>
+
+            </div>
+                        <div class="fgroup">
+                <label>
+                    <span class="required-dot"></span>
+                    Etiqueta o categoría
+                </label>
+                <input
+                    type="text"
+                    id="f-label"
+                    placeholder="Ej: Favorito, Equipo..."
+                    maxlength="40"
+                    autocomplete="off">
+                <div class="error-msg" id="e-label">La etiqueta es obligatoria (mín. 2 caracteres).</div>
+            </div>
+ 
+            <!--opcional notas-->
+            <div class="fgroup">
+                <div class="char-row">
+                    <label>Nota personal <span style="color:var(--text-muted);font-size:0.68rem;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+                    <span class="char-count" id="char-count">0 / 150</span>
+                </div>
+                <textarea
+                    id="f-note"
+                    placeholder="Agregar Nota"
+                    maxlength="150"></textarea>
+            </div>
+            <!--botones de acciones-->
+        <div class="form-actions">
+            <button class="btn-save" id="btn-save">Guardar en favoritos</button>
+            <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+        </div>
+ 
+        </div>
+ 
+        
+
+            </section>
+        </main>
+
+    </div>
+    
+</body>
+</html>
