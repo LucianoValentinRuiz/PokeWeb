@@ -12,21 +12,46 @@
     <div class="wrapper">
         <div class="header-container">
             <div class="container-init">
-                <ul class="container-menu">
-                    <li class="active"><a href="#">Inicio</a></li>
-                    <li class="dropdown"><a href="#">Pokédex</a>
+                <nav class="navbar">
+                    <a class="nav-logo" href="inicio.html">
+                    <div class="logo-img">
+                        <img src="../img/pokeball2.png" alt="Logo PokéWeb...">
+                    </div> 
+                    <span class="logo-text">PokéWeb</span>
+                    </a>
+                    <ul class="container-menu" id="container-menu">
+                        <div class="nav-indicator" id="nav-indicator"></div>
+                        <li class="nav-link"><a class= "menu-item active" href="inicio.html">Inicio</a></li>
+                        <li class="menu-item dropdown">
+                            <button class="nav-link" data-label="Pokédex">
+                                Pokédex
+                                <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 4l4 4 4-4"/>
+                                </svg>
+                            </button>
                             <ul class="submenu">
                                 <li><a href="#">Tipos</a></li>
-                                <li><a href="#">Habilidades</a></li>
-                                
+                                <li><a href="#">Generacion</a></li>
+                                <li><a href="#">Habitat</a></li>
+                                <li><a href="#">Color</a></li>
+                                <li><a href="#">Region</a></li>
                             </ul>
                         </li>
-                    <li><a href="#">Explorar</a></li>
-                    <li><a href="#">Favoritos</a></li>
-                    <li><a href="#">Contacto</a></li>
-
-                </ul>
-                
+                        <li class="menu-item dropdown">
+                            <button class="nav-link" data-label="Explorar">
+                                Explorar
+                                <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 4l4 4 4-4"/>
+                                </svg>
+                            </button>
+                            <ul class="submenu">
+                                <li><a href="historial.html">Historial</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-link"><a href="favoritos.html">Favoritos</a></li>
+                        <li class="nav-link"><a href="#">Contacto</a></li>
+                    </ul>
+                </nav>
 
             </div>
             

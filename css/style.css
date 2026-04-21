@@ -30,10 +30,7 @@
   box-shadow: 0 0 15px rgba(138, 92, 255, 0.4);
 }
 
-.search-icon {
-  opacity: 0.6; 
-  font-size: 1.1rem;
-}
+
 .search-input {
   background: transparent; 
   border: none;
@@ -41,6 +38,11 @@
   
   color: #ffffff; /*color del texto que escribe el usuario*/
   width: 100%; /*input ocupe todo el espacio restante*/
+}
+
+.search-container svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 /* ----------------------Fila Inferior (FILTROS) ------------------------------- */
