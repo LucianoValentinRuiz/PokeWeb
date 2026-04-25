@@ -1,0 +1,135 @@
+main { margin:40px; padding:40px 24px; color:var(--text-muted)}
+
+
+/*-----------grid contacto--------------*/
+.contact-container {
+display:flex; 
+flex-direction: row;
+ gap:24px; align-items:stretch;
+ justify-content: center;
+ max-height: 700px;
+}
+
+/*-----------parte izquierda-------------*/
+.info-panel {
+    background:var(--bg-panel); border:1px solid var(--border-purple);
+    border-radius:22px; overflow:hidden;
+    position:relative;
+    
+}
+.info-panel::before {
+            content:''; position:absolute; top:0; left:10%; right:10%; height:1px;
+            background:linear-gradient(90deg,transparent,var(--purple),transparent);
+        }
+.subject-section {
+            padding:28px 24px 22px;
+            display:flex; flex-direction:column; align-items:center; text-align:center;
+            border-bottom:1px solid var(--border-purple);
+        }
+
+.name-subject { font-size:0.8rem; color:var(--text-muted); }
+
+/* filas de info */
+.info-rows { padding:20px 24px; }
+.info-row {
+display:flex; align-items:flex-start; gap:14px; margin-bottom:16px;
+}
+
+.info-text .ilabel {
+    font-size:0.68rem; color:var(--text-muted); text-transform:uppercase;
+    letter-spacing:0.6px; margin-bottom:2px;
+}
+.info-text .ivalue { font-size:0.88rem; font-weight:600; }
+.info-text .ivalue a { color:#cec0ff; text-decoration:none; }
+.info-text .ivalue a:hover { text-decoration:underline; }
+
+/* stack tecnológico */
+.tech-section {
+    padding:16px 24px 22px;
+    border-top:1px solid var(--border-purple);
+}
+.tech-label { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px; font-weight:700; }
+.tech-pills { display:flex; flex-wrap:wrap; gap:7px; }
+.tech-pill {
+        padding:5px 14px; border-radius:12px;
+        font-size:0.75rem; font-weight:700; font-family:'Rajdhani',sans-serif; letter-spacing:0.4px;
+    }
+.tp-html { color:var(--t-fire); background:rgba(255,107,53,0.1); border:1px solid rgba(255,107,53,0.3);}
+.tp-css  { color:var(--t-water); background:rgba(79,195,247,0.1);  border:1px solid rgba(79,195,247,0.3); }
+.tp-js   { color:var(--t-electric); background:rgba(255,217,0,0.1);   border:1px solid rgba(255,217,0,0.3); }
+.tp-api  { color:var(--t-grass); background:rgba(102,187,106,0.1); border:1px solid rgba(102,187,106,0.3); }
+.tp-ls   { color:var(--t-poison); background:rgba(171,71,188,0.1);  border:1px solid rgba(171,71,188,0.3); }
+
+/*--------parte derecho mapa.----------------*/
+.map-panel {
+    background:var(--bg-panel); border:1px solid var(--border-purple);
+        border-radius:22px; overflow:hidden; position:relative;
+        min-width: 700px;
+}
+.map-panel::before {
+    content:''; position:absolute; top:0; left:10%; right:10%; height:1px;
+     background:linear-gradient(90deg,transparent,var(--purple),transparent); z-index:1;
+}
+
+.map-header { padding-left:20px; }
+.map-header h3 { font-family:'Rajdhani',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:5px; }
+.map-header p { font-size:0.82rem; color:var(--text-muted); }
+
+/* dirección con badge */
+.map-address {
+    display:flex; align-items:center; gap:10px;
+    padding:0 20px 16px;
+    border-bottom:1px solid var(--border-purple);
+}
+
+.addr-text { font-size:0.82rem; }
+.addr-text strong { display:block;  margin-bottom:2px; }
+        
+
+/* coordenadas*/
+.coords-bar {
+    display:flex; gap:10px; padding:14px 26px;
+    border-bottom:1px solid var(--border-purple);
+    flex-wrap:wrap;
+    }
+.coord-badge {
+    display:flex; align-items:center; gap:6px;
+    background:var(--bg-inner); border:1px solid rgba(255,255,255,0.07);
+    padding:6px 14px; border-radius:10px; font-size:0.78rem;
+    }
+.coord-badge .clabel { color:var(--text-muted); margin-right:2px; }
+.coord-badge .cval { font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--purple); }
+
+
+.map-frame-container { position:relative; height:380px; }
+.map-frame-container iframe {
+    width:100%; height:100%; border:none;
+    filter:saturate(0.6) brightness(0.75) hue-rotate(200deg);
+}
+
+/* overlay info sobre mapa */
+.map-info-overlay {
+    position:absolute; bottom:18px; left:18px;
+    background:rgba(13,10,26,0.92); backdrop-filter:blur(12px);
+    border:1px solid var(--border-purple); border-radius:14px;
+    padding:12px 16px; max-width:220px;
+}
+.map-info-overlay strong { display:block; font-family:'Rajdhani',sans-serif; font-size:1rem; margin-bottom:3px; }
+.map-info-overlay span { font-size:0.75rem; color:var(--text-muted); }
+
+/* enlaces a maps */
+.map-actions { padding:14px 26px; display:flex; gap:10px; flex-wrap:wrap; }
+.btn-maps {
+    background:var(--purple-dim); border:1px solid var(--border-purple);
+    color:#cec0ff; padding:8px 18px; border-radius:10px;
+    font-family:'Nunito',sans-serif; font-weight:700; font-size:0.82rem;
+    cursor:pointer; text-decoration:none; transition:all 0.2s; display:inline-block;
+    }
+.btn-maps:hover { background:rgba(138,92,255,0.26); }
+
+@media(max-width:860px) {
+    .contact-grid { grid-template-columns:1fr; }
+    .map-frame-container { height:300px; }
+    nav { padding:0 14px; }
+        .nav-links a { padding:6px 8px; font-size:0.78rem; }
+}

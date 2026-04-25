@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conctacto</title>
+    <link rel="stylesheet" href="/CSS/global.css">
+    <link rel="stylesheet" href="/CSS/stylecontacto.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header-container">
+            <div class="container-init">
+                <nav class="navbar">
+                    <a class="nav-logo" href="inicio.html">
+                    <div class="logo-img">
+                        <img src="../img/pokeball2.png" alt="Logo PokéWeb...">
+                    </div> 
+                    <span class="logo-text">PokéWeb</span>
+                    </a>
+                    <ul class="container-menu" id="container-menu">
+                        <div class="nav-indicator" id="nav-indicator"></div>
+                        <li class="nav-link"><a class= "menu-item active" href="inicio.html">Inicio</a></li>
+                        <li class="menu-item dropdown">
+                            <button class="nav-link" data-label="Pokédex">
+                                Pokédex
+                                <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 4l4 4 4-4"/>
+                                </svg>
+                            </button>
+                            <ul class="submenu">
+                                <li><a href="#">Tipos</a></li>
+                                <li><a href="#">Generacion</a></li>
+                                <li><a href="#">Habitat</a></li>
+                                <li><a href="#">Color</a></li>
+                                <li><a href="#">Region</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <button class="nav-link" data-label="Explorar">
+                                Explorar
+                                <svg class="chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 4l4 4 4-4"/>
+                                </svg>
+                            </button>
+                            <ul class="submenu">
+                                <li><a href="historial.html">Historial</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-link"><a href="favoritos.html">Favoritos</a></li>
+                        <li class="nav-link"><a href="#">Contacto</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+            
+            
+            
+        </div>
+        <main>
+            <div class="contact-container">
+                <div class="info-panel">
+                    <div class="subject-section">
+                        <div class="name-subject">Aplicaciones Móviles — Módulo 1 · 2026</div>
+                    </div>
+
+                    <div class="info-rows">
+                        <div class="info-row">
+                            
+                            <div class="info-text">
+                                <div class="ilabel">Integrante 1</div>
+                                <div class="ivalue">Valentin</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            
+                            <div class="info-text">
+                                <div class="ilabel">Integrante 2</div>
+                                <div class="ivalue">Brenda Cruz</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+
+                            <div class="info-text">
+                                <div class="ilabel">Correo</div>
+                                <div class="ivalue"><a href="mailto:grupo@ejemplo.com">grupo@ejemplo.com</a></div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-text">
+                                <div class="ilabel">Materia</div>
+                                <div class="ivalue">Aplicaciones Móviles</div>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-text">
+                                <div class="ilabel">Institución</div>
+                                <div class="ivalue">Universidad Nacional Arturo Jauretche</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-section">
+                        <div class="tech-label">Stack tecnológico</div>
+                        <div class="tech-pills">
+                            <span class="tech-pill tp-html">HTML5</span>
+                            <span class="tech-pill tp-css">CSS3</span>
+                            <span class="tech-pill tp-js">JavaScript</span>
+                            <span class="tech-pill tp-api">PokéAPI</span>
+                            <span class="tech-pill tp-ls">localStorage</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- PANEL DERECHO — MAPA -->
+                <div class="map-panel">
+                    <div class="map-header">
+                        <h3>Ubicación</h3>
+                        <p>La Plata, Buenos Aires.</p>
+                    </div>
+
+                <div class="map-address">
+                    <div class="addr-text">
+                        <strong>Catedral de La Plata</strong>
+                        <span>Plaza Moreno s/n, La Plata, Buenos Aires, Argentina</span>
+                    </div>
+                </div>
+
+                <div class="coords-bar">
+                    <div class="coord-badge">
+                        <span class="clabel">Lat</span>
+                        <span class="cval">-34.9215</span>
+                    </div>
+                    <div class="coord-badge">
+                        <span class="clabel">Lng</span>
+                        <span class="cval">-57.9536</span>
+                    </div>
+                    <div class="coord-badge">
+                        <span class="cval">La Plata, BA</span>
+                    </div>
+                </div>
+
+            <div class="map-frame-container">
+                <!--catedral de La plata — coordenadas: -34.9215, -57.9536 -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.437!2d-57.95619!3d-34.92153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b17312b8b%3A0xae8d5f76c59b3c1e!2sCatedral%20de%20La%20Plata!5e0!3m2!1ses-419!2sar!4v1713400000000!5m2!1ses-419!2sar"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="map-info-overlay">
+                    <strong>Catedral de La Plata</strong>
+                    <span>La Plata, Buenos Aires, Argentina</span>
+                </div>
+            </div>
+
+            <div class="map-actions">
+                <a class="btn-maps"
+                    href="https://www.google.com/maps/search/?api=1&query=-34.9215,-57.9536"
+                    target="_blank">
+                    Abrir en Google Maps
+                </a>
+            </div>
+                </div>
+
+            </div>
+
+        </main>
+        <footer class="footer-container">
+            <div class="footer-pok">2026 Pokeweb. Todos los derechos reservados. </div>
+        </footer>
+
+
+    </div>
+    
+</body>
+</html>
