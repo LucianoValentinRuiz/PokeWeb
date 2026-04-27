@@ -1,6 +1,6 @@
 import { getPokemonMin,getPokemonByName } from "../services/search.js";
 import { redireccionamiento } from "./redireccionamiento.js";
-import { getFromLocalStorage } from "./favoritos.js";
+import { getFromLocalStorage } from "./localStorage.js";
 import { imprimirPokemonModal, botonCerrarModal, prepararEliminacion } from "./modalEliminar.js";
 import { prepararLimpieza} from "./modalLimpiar.js";
 

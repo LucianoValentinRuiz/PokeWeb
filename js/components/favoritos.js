@@ -2,26 +2,7 @@ import { getPokemonMin,getPokemonByName } from "../services/search.js";
 import { redireccionamiento } from "./redireccionamiento.js";
 import { imprimirPokemonModal, botonCerrarModal, prepararEliminacion } from "./modalEliminar.js";
 import { prepararLimpieza} from "./modalLimpiar.js";
-
-export function getFromLocalStorage(key) {
-    const storedData = localStorage.getItem(key);
-    let list = [];
-    if (!storedData) {
-        return list;
-    }
-
-    try {
-        const parsedData = JSON.parse(storedData);
-        if (Array.isArray(parsedData)) {
-            list = parsedData;
-        } else {
-            console.warn("Se encontró data corrupta en LocalStorage al leer.");
-        }
-    } catch (error) {
-        console.error("Error al procesar LocalStorage:", error);
-    }
-    return list;
-}
+import { getFromLocalStorage } from "./localStorage.js";
 
 const listaFavoritos = getFromLocalStorage("favoritos");
 let contador = 0;

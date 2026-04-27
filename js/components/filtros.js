@@ -31,12 +31,14 @@ const contenedor = document.getElementById('destino-select');
 
 enlaces.forEach(link => {
     link.addEventListener('click', function(event) {
-        event.preventDefault();
-
         const categoria = this.textContent.trim();
-        generarMenu(categoria);
-        });
+        
+        if (datosPokedex[categoria]) {
+            event.preventDefault(); 
+            generarMenu(categoria);
+        } 
     });
+});
 
 async function generarMenu(nombre) {
     contenedor.innerHTML = "";
