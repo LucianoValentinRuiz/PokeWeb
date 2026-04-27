@@ -21,6 +21,9 @@
                     </div> 
                     <span class="logo-text">PokéWeb</span>
                     </a>
+                    <button class="hamburger" id="hamburger" aria-label="Menú">
+                    <span></span><span></span><span></span>
+                    </button>
                     <ul class="container-menu" id="container-menu">
                         <div class="nav-indicator" id="nav-indicator"></div>
                         <li class="nav-link"><a class= "menu-item active" href="inicio.html">Inicio</a></li>
@@ -50,12 +53,10 @@
                                 <li><a href="historial.html">Historial</a></li>
                             </ul>
                         </li>
-                    <li><a href="#">Explorar</a></li>
-                    <li><a href="#">Favoritos</a></li>
-                    <li><a href="#">Contacto</a></li>
-
-                </ul>
-                
+                        <li class="nav-link"><a href="favoritos.html">Favoritos</a></li>
+                        <li class="nav-link"><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
 
             </div>
             
@@ -84,7 +85,7 @@
                         <p id="pokemon-description" class="pokedex-description">CARGANDO...</p>
  
                         <div class="info-types">
-                            <span id="pokemon-type" class="type-badge type-electric">CARGANDO...</span>
+                            <span id="pokemon-type" class="type normal">CARGANDO...</span>
                         </div>
  
                         <div class="pokemon-info-grid">
@@ -201,7 +202,9 @@
 
 
     </div>
+    <script type="module" src="../js/components/navbar.js"></script>
     <script type="module" src="../js/components/pokemonForm.js"></script>
     <script type="module" src="../js/components/pokemon.js"></script>
+    
 </body>
 </html>

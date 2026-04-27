@@ -49,6 +49,12 @@ export async function loadPokemon(dato, miFuncion) {
         card.addEventListener('click', () => {
             redireccionamiento(pokemon[0]);
         });
+        // ----colorborde dinamico -----
+        const colorTipo = getComputedStyle(document.documentElement)
+        .getPropertyValue(`--t-${pokemon[3]}`)
+        .trim();
+        card.style.setProperty('--type-color', colorTipo);
+        
 
         // --- Contenedor de Imagen (image-circle) ---
         const divImagenCircle = document.createElement("div");
