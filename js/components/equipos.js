@@ -1,5 +1,6 @@
 import { getRandomTeam,getRandomTeamByType } from "../services/team.js";
 import { getPokemonMin,getPokemonByName } from "../services/search.js";
+import { redireccionamiento } from "./redireccionamiento.js";
 
 export async function renderHistorialNodes(pokemons) {
     // 1. Mapeo previo de datos
@@ -38,12 +39,12 @@ export async function renderHistorialNodes(pokemons) {
         const img = document.createElement('img');
         img.classList.add('wish-img');
         img.src = pokemonMin[2];
-        img.alt = pokemonBase.name; 
+        img.alt = pokemonBase; 
         imgPok.appendChild(img);
 
         const namePok = document.createElement('div');
         namePok.classList.add('wish-name');
-        namePok.textContent = pokemonBase.name; 
+        namePok.textContent = pokemonBase; 
 
         const idPok = document.createElement('div');
         idPok.classList.add('wish-id');
@@ -97,7 +98,7 @@ export async function renderHistorialNodes(pokemons) {
         btnDetail.classList.add('btn-detail');
         btnDetail.textContent = 'Ver detalle';
         btnDetail.addEventListener('click', () => {
-            redireccionamiento(pokemonBase.name); 
+            redireccionamiento(pokemonBase); 
         });
 
         actionsDiv.append(btnDetail);
