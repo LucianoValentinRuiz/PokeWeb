@@ -24,6 +24,8 @@ async function renderWishlistNodes(pokemons) {
 
     // 2. Seleccionamos el contenedor principal y lo limpiamos
     const container = document.getElementById('wishlist-grid');
+    const contenedorMensaje = document.getElementById("no-results-container");
+    contenedorMensaje.innerHTML = '';
     container.innerHTML = '';
 
     // 3. Iteramos sobre los datos ya procesados para construir las cards

@@ -1,17 +1,12 @@
+import { getRandomTeam,getRandomTeamByType } from "../services/team.js";
 import { getPokemonMin,getPokemonByName } from "../services/search.js";
-import { redireccionamiento } from "./redireccionamiento.js";
-import { getFromLocalStorage } from "./localStorage.js";
-import { imprimirPokemonModal, botonCerrarModal, prepararEliminacion } from "./modalEliminar.js";
-import { prepararLimpieza} from "./modalLimpiar.js";
 
-const listaHistorial = getFromLocalStorage('historial');
-let contador = 0;
 export async function renderHistorialNodes(pokemons) {
     // 1. Mapeo previo de datos
     let mapeoDeDeseados = await Promise.all(pokemons.map(async (pokemon) => {
         // Usamos pokemon.nombre porque la estructura del objeto cambió
-        const pokemonPromises = await getPokemonMin(pokemon.name);
-        const miPokemon = await getPokemonByName(pokemon.name);
+        const pokemonPromises = await getPokemonMin(pokemon);
+        const miPokemon = await getPokemonByName(pokemon);
         return {
             pokemonBase: pokemon,
             pokemonMin: pokemonPromises,  
@@ -22,12 +17,11 @@ export async function renderHistorialNodes(pokemons) {
     // 2. Seleccionamos el contenedor y lo limpiamos
     const container = document.getElementById('wishlist-grid');
     const contenedorMensaje = document.getElementById("no-results-container");
-    contenedorMensaje.innerHTML = '';
     container.innerHTML = '';
+    contenedorMensaje.innerHTML = '';
 
     // 3. Iteramos sobre los datos para armar el HTML
     mapeoDeDeseados.forEach(dato => {
-        contador = contador + 1;
         const { pokemonBase, pokemonMin, pokemonFull } = dato;
 
         // --- Contenedor Principal (wish-info) ---
@@ -95,39 +89,6 @@ export async function renderHistorialNodes(pokemons) {
             miniStat.append(sLabel, sVal);
             statsDiv.appendChild(miniStat);
         });
-
-        // --- EXTRAS: Visitado y Tiempo ---
-        const extraDiv = document.createElement('div');
-        extraDiv.classList.add('wish-extra');
-        extraDiv.style.marginTop = '10px';
-
-        const extraRow = document.createElement('div');
-        extraRow.classList.add('extra-row');
-
-        const sKey = document.createElement('div');
-        sKey.classList.add('s-key');
-        sKey.textContent = 'Visitado';
-
-        const infoVal = document.createElement('div');
-        infoVal.classList.add('info-val');
-
-        // LÓGICA DE FECHA SIMPLIFICADA
-        if (pokemonBase.fechaVisita) {
-            const fecha = new Date(pokemonBase.fechaVisita);
-            const opcionesDeFormato = { 
-                day: 'numeric', 
-                month: 'short', 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            };
-            infoVal.textContent = fecha.toLocaleDateString('es-ES', opcionesDeFormato);
-        } else {
-            infoVal.textContent = 'Sin registro'; 
-        }
-
-        extraRow.append(sKey, infoVal);
-        extraDiv.appendChild(extraRow);
-
         // --- Botones y Eventos Directos ---
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('wish-actions');
@@ -136,27 +97,13 @@ export async function renderHistorialNodes(pokemons) {
         btnDetail.classList.add('btn-detail');
         btnDetail.textContent = 'Ver detalle';
         btnDetail.addEventListener('click', () => {
-            redireccionamiento(pokemonBase.name);
+            redireccionamiento(pokemonBase.name); 
         });
 
-        const btnRemove = document.createElement('button');
-        btnRemove.classList.add('btn-remove');
-        btnRemove.textContent = '✕';
-        btnRemove.addEventListener('click', async () => {
-            //Se carga el HTML del modal
-            const container = document.getElementById('modal-container');
-            const response = await fetch('modalEliminar.html');
-            const htmlText = await response.text();
-            container.innerHTML = htmlText;
-            await imprimirPokemonModal(pokemonBase.name,pokemonMin[1],pokemonMin[2]);
-            await botonCerrarModal();
-            await prepararEliminacion(pokemonBase.name,'historial');
-        });
-
-        actionsDiv.append(btnDetail, btnRemove);
+        actionsDiv.append(btnDetail);
 
         // Ensamblamos info-bottom 
-        infoBottom.append(statsDiv, extraDiv, actionsDiv);
+        infoBottom.append(statsDiv, actionsDiv);
 
         // --- Ensamblaje final de la Card ---
         wishInfo.append(infoTop, infoBottom);
@@ -166,20 +113,42 @@ export async function renderHistorialNodes(pokemons) {
     });
 }
 
-if (listaHistorial.length === 0){
-    console.log("esta vacio");    
-}
-else{
-    await renderHistorialNodes(listaHistorial);
-    document.getElementById("count").textContent = contador;
-}
+//--BOTON GENERAR--
+const btnGenerar = document.getElementById('btn-clear-all');
+const trigger = document.getElementById('select-trigger');
+const optionsList = document.getElementById('select-options');
+const selectedText = document.getElementById('selected-value');
 
-const btnLimpiar = document.getElementById('btn-clear-all').addEventListener('click', async () => {
-    //Se carga el HTML del modal
-    const container = document.getElementById('modal-container');
-    const response = await fetch('modalLimpiar.html');
-    const htmlText = await response.text();
-    container.innerHTML = htmlText;
-    await botonCerrarModal();
-    await prepararLimpieza('historial');
-        });
+let tipoSeleccionadoActual = 'random'; 
+
+// Abrir/Cerrar
+trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    optionsList.classList.toggle('active');
+});
+
+// Selección de opción
+optionsList.addEventListener('click', (e) => {
+    const item = e.target.closest('li');
+    if (!item) return;
+
+    tipoSeleccionadoActual = item.getAttribute('data-value');
+    selectedText.textContent = item.textContent;
+    optionsList.classList.remove('active');
+    
+    trigger.style.borderColor = 'rgba(138, 43, 226, 0.6)';
+});
+
+// Cerrar si clicamos fuera
+document.addEventListener('click', () => optionsList.classList.remove('active'));
+
+//Boton event
+btnGenerar.addEventListener('click', async () => {
+    let nuevosPokemons;
+        if (tipoSeleccionadoActual === 'random') {
+            nuevosPokemons = await getRandomTeam();
+        } else {
+            nuevosPokemons = await getRandomTeamByType(tipoSeleccionadoActual);
+        }
+        await renderHistorialNodes(nuevosPokemons);
+});

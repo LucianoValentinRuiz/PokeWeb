@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favoritos</title>
+    <title>Equipos</title>
     <link rel="stylesheet" href="/CSS/global.css">
     <link rel="stylesheet" href="/CSS/stylefavoritos.css">
     <link rel="stylesheet" href="/CSS/stylemodal.css">
     <link rel="stylesheet" href="/CSS/styleformulario.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS/equipo.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -64,10 +66,39 @@
         </div>
     <main>
         <div class="wishlist-header">
-            <h1>Favoritos</h1>
+            <h1>Equipos</h1>
             <div class="header-clear">
-                <div class="count-pok"> Total: <span id="count">0</span> Pokémon</div>
-                <button class ="btn-clear" id="btn-clear-all"> Limpiar</button>
+                <div >
+                    <div class="custom-select-container">
+                        <button class="select-trigger" id="select-trigger" type="button">
+                            <span id="selected-value">Cualquier Tipo</span>
+                            <svg class="arrow-icon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>
+                        </button>
+                        <ul class="select-options" id="select-options">
+                            <li data-value="random">Cualquier Tipo</li>
+                            <li data-value="fire">Fuego</li>
+                            <li data-value="water">Agua</li>
+                            <li data-value="grass">Planta</li>
+                            <li data-value="electric">Eléctrico</li>
+                            <li data-value="bug">Bicho</li>
+                            <li data-value="dragon">Dragon</li>
+                            <li data-value="fairy">Hada</li>
+                            <li data-value="fighting">Peleador</li>
+                            <li data-value="flying">Volador</li>
+                            <li data-value="ghost">Fantasma</li>
+                            <li data-value="ground">Tierra</li>
+                            <li data-value="ice">Hielo</li>
+                            <li data-value="normal">Normal</li>
+                            <li data-value="poison">Veneno</li>
+                            <li data-value="psychic">Psiquico</li>
+                            <li data-value="rock">Roca</li>
+                            <li data-value="dark">Siniestro</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class ="btn-clear" id="btn-clear-all"> Generar</button>
             </div>
 
         </div>
@@ -82,7 +113,7 @@
 
                 <div class="no-results-message">
                     <h2>¡Oops! No hay nada por aquí</h2>
-                    <p>En este momento no hay ningún Pokémon para mostrar en pantalla.</p>
+                    <p>En esta seccion podras generar tu equipo pokemon de forma aleatoria para enfrentar a tus amigos.</p>
                 </div>
             </section>
         <section  id="modal-container"></section>
@@ -96,7 +127,7 @@
         </footer>
 
     </div>
-    <script type="module" src="../js/components/favoritos.js"></script>
+    <script type="module" src="../js/components/equipos.js"></script>
     <script type="module" src="../js/components/navbar.js"></script>
 </body>
 </html>
