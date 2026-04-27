@@ -38,7 +38,7 @@
             position: relative;
             width: 210px; height: 210px;
             object-fit: contain;
-            filter: drop-shadow(0 0 24px rgba(255, 217, 0, 0.35));
+            filter: drop-shadow(0 0 14px var(--type-color));
             transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), filter 0.3s;
             z-index: 1;
             
@@ -48,7 +48,7 @@
 
         .pokemon-image:hover {
             transform: scale(1.07) translateY(-4px);
-            filter: drop-shadow(0 0 32px rgba(255, 217, 0, 0.55));
+            filter: drop-shadow(0 0 24px var(--type-color));
         }
 
 
@@ -289,6 +289,7 @@
             letter-spacing: 0.5px;
             box-shadow: 0 4px 20px rgba(138,92,255,0.35);
         }
+
         .btn-wishlist:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 28px rgba(138,92,255,0.5);
@@ -303,4 +304,70 @@
             cursor: default;
             filter: brightness(0.8);
             }*/
-        
+        /* ── BASE mobile (hasta 767px) ── */
+@media (max-width: 767px) {
+  .pokemon-information {
+    padding: 16px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  main {
+    padding: 0;
+    margin: 0;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr; /* una sola columna */
+    gap: 24px;
+  }
+
+  .pokemon-image {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pokemon-title {
+    font-size: 1.6rem;
+  }
+
+  .stat-row {
+    grid-template-columns: 80px 32px 1fr; /* achicás la columna del nombre */
+  }
+}
+
+/* ── Tablet (768px–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .pokemon-information {
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr 1.2fr; /* menos diferencia entre columnas */
+    gap: 40px;
+  }
+
+  .pokemon-image {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* ── Mobile landscape (481px–767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  .content-grid {
+    grid-template-columns: 1fr; /* sigue en una columna */
+    gap: 20px;
+  }
+
+  .pokemon-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* aprovecha el ancho extra para las stats */
+  .stat-row {
+    grid-template-columns: 110px 38px 1fr;
+  }
+}

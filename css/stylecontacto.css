@@ -133,3 +133,47 @@ display:flex; align-items:flex-start; gap:14px; margin-bottom:16px;
     nav { padding:0 14px; }
         .nav-links a { padding:6px 8px; font-size:0.78rem; }
 }
+
+/* ── Mobile (hasta 767px) ── */
+@media (max-width: 767px) {
+  main {
+    margin: 12px;
+    padding: 12px;
+  }
+
+  .contact-container {
+    flex-direction: column; /* apila los paneles verticalmente */
+    max-height: none;
+  }
+
+  .map-panel {
+    min-width: unset; /* saca el min-width: 700px que lo rompe en mobile */
+    width: 100%;
+  }
+
+  .map-frame-container {
+    height: 260px;
+  }
+}
+
+/* ── Tablet (768px–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  main {
+    margin: 20px;
+    padding: 20px 16px;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .map-panel {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .map-frame-container {
+    height: 340px;
+  }
+}

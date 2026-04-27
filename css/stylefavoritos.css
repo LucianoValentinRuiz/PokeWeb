@@ -49,6 +49,7 @@ main { margin:20px;
     margin: 0 auto; /*centrat grip*/
     padding: 30px;
     font-family:'Rajdhani',sans-serif;
+    justify-content: center;
         
 }
 
@@ -60,6 +61,8 @@ main { margin:20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(138, 92, 255, 0.15), inset 0 0 10px rgba(138, 92, 255, 0.05); 
+    max-width: 400px;
+    width: 100%;
     
 }
 .wish-info:hover { transform:scale(1.05) translateY(-1px); box-shadow:0 14px 36px rgba(0,0,0,0.5); }
@@ -172,6 +175,54 @@ main { margin:20px;
             
 }
 
+/* ── Mobile (hasta 767px) ── */
+@media (max-width: 767px) {
+  main {
+    margin: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 
+  .wishlist-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .wishlist-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px 0;
+  }
+
+  .wish-stats {
+    flex-wrap: wrap;
+  }
+
+  .mini-stat {
+    min-width: calc(33% - 4px);
+  }
+}
+
+/* ── Mobile landscape (481px–767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ── Tablet (768px–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+  }
+}
 
 

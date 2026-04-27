@@ -10,6 +10,7 @@
             --text-id:        rgba(138, 92, 255, 0.85);
             --background-color:#1e1f26;
             --footer-color:#000209;
+            --bg-nav: rgba(13, 10, 26, 0.85);
  
             /*colores para las stats*/
             --c-hp:    #ff5959;
@@ -45,6 +46,7 @@ html, body {
     height: 100%;
     margin: 0; /* Elimina márgenes predeterminados */
     background-color:var(--background-color); 
+    overflow-x: hidden;
     
 }
 
@@ -53,13 +55,13 @@ html, body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     background-image: radial-gradient(circle at top right, #2a1a4a, #0b0710); 
+    overflow-x: hidden;
 }
 
 /*-----------------------------------------------Menu Inicio------------------------------------------------*/
 .navbar 
 {
     position: sticky; top: 0; z-index: 200;
-    background: var(--bg-nav);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-purple);
     padding: 0 32px;
@@ -106,7 +108,7 @@ html, body {
     cursor: pointer; 
     position: relative; /*necesario para que el submenú se posicione relativo al padre */
     transition: background-color 0.3s ease;   
-    padding: 10px 20px;
+    
     width: auto;
     padding: 8px 14px; border-radius: 10px;
             
@@ -324,4 +326,97 @@ footer{
     text-align: center; /*centra el texto horizontalmente */
     padding: 5px; 
     background-color: var(--footer-color);
+    font-size: 0.75rem;
+}
+
+
+/*------------------------------mobile---------------------------------*/
+/*responsive ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 300;
+  
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-muted);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .container-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #1a0d35;
+    border-bottom: 1px solid var(--border-purple);
+    padding: 12px 0;
+    z-index: 199;
+    gap: 0;
+  }
+
+  .container-menu.menu-open {
+    display: flex; 
+  }
+
+  .container-menu li {
+    padding: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .nav-link,
+  .container-menu a,
+  .container-menu button.nav-link {
+    padding: 12px 20px;
+    width: 100%;
+    display: block;
+    border-radius: 0;
+    text-align: left;      /* ← todos alineados a la izquierda */
+    box-sizing: border-box;
+    justify-content: flex-start; /* ← por si tienen flex */
+  }
+  
+
+  .submenu {
+    position: static;
+    display: block;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    border-left: 2px solid var(--border-purple);
+    margin-left: 20px;
+    min-width: unset;
+    border-radius: 0;
+  }
+
+  /*los dropdowns siempre visibles */
+  .dropdown .submenu {
+    display: none;
+  }
 }

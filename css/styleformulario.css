@@ -196,7 +196,52 @@ margin-left: 10px;
     }
 .close-btn:hover { color:var(--text-main); transform:rotate(90deg); }
  
-        
+/* ── Mobile (hasta 480px) ── */
+@media (max-width: 480px) {
+  .form-information {
+    align-items: flex-start;   
+    padding: 8px;
+    overflow-y: auto;          /*permite scroll */
+  }
+
+  .form-panel {
+    max-width: 100%;
+    border-radius: 16px;
+    max-height: 95vh;          /* nunca más alto que la pantalla */
+    overflow-y: auto;          /*scroll interno */
+  }
+
+  .form-header {
+    padding: 16px 16px 0;
+    flex-direction: column;    /*imagen arriba, info abajo */
+    align-items: center;
+    text-align: center;
+  }
+
+  .poke-name {
+    font-size: 1.2rem;
+  }
+
+  .form-actions {
+    padding: 0 16px 16px;
+    position: sticky;          /*los botones siempre visibles abajo */
+    bottom: 0;
+    background: var(--bg-panel);
+    padding-top: 12px;
+  }
+
+  .stars-wrap {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* ── Mobile landscape (481px–767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  .form-panel {
+    max-width: 460px;
+  }
+}      
 
         
 

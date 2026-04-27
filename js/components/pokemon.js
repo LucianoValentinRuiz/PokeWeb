@@ -14,8 +14,16 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
     //INFO DEL POKEMON
     document.getElementById('pokemon-title').textContent = ((miPokemon.name).charAt(0).toUpperCase() + (miPokemon.name).slice(1));
     document.getElementById('pokemon-id').textContent = `#${(miPokemon.id).toString().padStart(3, '0')}`;;
-    document.getElementById('pokemon-type').textContent = miPokemon.types['0'].type.name;
+    const tipo = miPokemon.types[0].type.name; 
+
+    //la clase pde pokemon
+    document.getElementById('pokemon-type').className = `type ${tipo}`;
+    document.getElementById('pokemon-type').textContent = tipo;
+
+    
+    document.getElementById('pokemon-info').style.setProperty('--type-color', `var(--t-${tipo})`);
     document.getElementById('pokemon-img').src = miPokemon.sprites.other['official-artwork'].front_default;
+
 
     //2.STATS DEL POKEMON
     document.getElementById('pokemon-info-altura').textContent =`${(miPokemon.height/10)} m`;
