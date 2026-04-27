@@ -373,19 +373,82 @@
 }
 
 .no-results-img img {
-    width: 200px; /* Ajusta el tamaño según tu imagen */
+    width: 200px;
     height: auto;
     margin-bottom: 20px;
-    opacity: 0.8; /* Un toque sutil para que se vea más suave */
+    opacity: 0.8; 
 }
 
 .no-results-message h2 {
-    color: var(--text-main); /* Usando tus variables de color */
+    color: var(--text-main); 
     margin-bottom: 10px;
     font-size: 1.5rem;
 }
 
 .no-results-message p {
-    color: var(--text-muted); /* Color más suave para el párrafo */
+    color: var(--text-muted);
     font-size: 1rem;
+}
+
+/* ── Mobile (hasta 767px) ── */
+@media (max-width: 767px) {
+  .no-results-container {
+    padding: 24px 16px;
+  }
+
+  .no-results-img img {
+    width: 140px; 
+    margin-bottom: 16px;
+  }
+
+  .no-results-message h2 {
+    font-size: 1.25rem;
+  }
+
+  .no-results-message p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+}
+
+/* ── Mobile (hasta 480px) ── */
+@media (max-width: 480px) {
+  .no-results-container {
+    padding: 20px 12px;
+    min-height: 250px; 
+  }
+
+  .no-results-img img {
+    width: 120px;
+  }
+
+  .no-results-message h2 {
+    font-size: 1.15rem;
+  }
+}
+
+/* ── Mobile landscape (481px–767px) ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  .no-results-img img {
+    width: 150px; 
+  }
+  
+  .no-results-container {
+    padding: 30px;
+  }
+}
+
+/* ── Tablet (768px–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .no-results-container {
+    padding: 40px;
+  }
+
+  .no-results-img img {
+    width: 180px; 
+  }
+
+  .no-results-message h2 {
+    font-size: 1.4rem;
+  }
 }

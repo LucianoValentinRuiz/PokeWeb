@@ -28,7 +28,10 @@ btnAbrir.addEventListener('click', async () => {
 function imprimirPokemonModal(miPokemon) {
     document.getElementById('pokemonModal-title').textContent = ((miPokemon.name).charAt(0).toUpperCase() + (miPokemon.name).slice(1));
     document.getElementById('pokemonModal-id').textContent = `#${(miPokemon.id).toString().padStart(3, '0')}`;
-    document.getElementById('pokemonModal-type').textContent = miPokemon.types['0'].type.name;
+    const typeElement = document.getElementById('pokemonModal-type');
+    const typeName = miPokemon.types[0].type.name;
+    typeElement.textContent = typeName; 
+    typeElement.className = `type ${typeName}`;
     document.getElementById('pokemonModal-img').src = miPokemon.sprites.other['official-artwork'].front_default;
 
     const statsMap = {
