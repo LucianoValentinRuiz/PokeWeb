@@ -1,5 +1,7 @@
 import { getPokemonMin,getPokemonByName } from "../services/search.js";
 import { redireccionamiento } from "./redireccionamiento.js";
+import { imprimirPokemonModal, botonCerrarModal, prepararEliminacion } from "./modalEliminar.js";
+import { prepararLimpieza} from "./modalLimpiar.js";
 
 export function getFromLocalStorage(key) {
     const storedData = localStorage.getItem(key);
@@ -26,6 +28,7 @@ let contador = 0;
 
 // 1. Agregamos 'async' antes de los parámetros
 async function renderWishlistNodes(pokemons) {
+    
     // 1. Mapeo previo de datos (Equivalente a mapPokemon en loadPokemon)
     // Usamos Promise.all para resolver todas las llamadas a la API en paralelo
     let mapeoDeDeseados = await Promise.all(pokemons.map(async (pokemon) => {
@@ -165,9 +168,16 @@ async function renderWishlistNodes(pokemons) {
         const btnRemove = document.createElement('button');
         btnRemove.classList.add('btn-remove');
         btnRemove.textContent = '✕';
-        /*btnRemove.addEventListener('click', () => {
-            console.log(`Eliminar de la lista a: ${pokemonBase.name}`);
-        });*/
+        btnRemove.addEventListener('click', async () => {
+            //Se carga el HTML del modal
+            const container = document.getElementById('modal-container');
+            const response = await fetch('modalEliminar.html');
+            const htmlText = await response.text();
+            container.innerHTML = htmlText;
+            await imprimirPokemonModal(pokemonBase.name,pokemonMin[1],pokemonMin[2]);
+            await botonCerrarModal();
+            await prepararEliminacion(pokemonBase.name,'favoritos');
+        });
 
         actionsDiv.append(btnDetail, btnRemove);
 
@@ -181,6 +191,22 @@ async function renderWishlistNodes(pokemons) {
         container.appendChild(wishInfo);
     });
 }
+console.log(listaFavoritos.length)
+if (listaFavoritos.length === 0){
+    console.log("esta vacio");    
+    }
+else{
+    await renderWishlistNodes(listaFavoritos);
+    document.getElementById('count').textContent = contador;
+}
 
-await renderWishlistNodes(listaFavoritos);
-document.getElementById('count').textContent = contador;
+
+const btnLimpiar = document.getElementById('btn-clear-all').addEventListener('click', async () => {
+    //Se carga el HTML del modal
+    const container = document.getElementById('modal-container');
+    const response = await fetch('modalLimpiar.html');
+    const htmlText = await response.text();
+    container.innerHTML = htmlText;
+    await botonCerrarModal();
+    await prepararLimpieza('favoritos');
+        });

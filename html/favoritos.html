@@ -6,6 +6,8 @@
     <title>Favoritos</title>
     <link rel="stylesheet" href="/CSS/global.css">
     <link rel="stylesheet" href="/CSS/stylefavoritos.css">
+    <link rel="stylesheet" href="/CSS/styleformulario.css">
+    <link rel="stylesheet" href="/CSS/stylemodal.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,7 +26,7 @@
                     </button>
                     <ul class="container-menu" id="container-menu">
                         <div class="nav-indicator" id="nav-indicator"></div>
-                        <li class="nav-link"><a class= "menu-item active" href="inicio.html">Inicio</a></li>
+                        <li class="nav-link"><a href="inicio.html">Inicio</a></li>
                         <li class="menu-item dropdown">
                             <button class="nav-link" data-label="Pokédex">
                                 Pokédex
@@ -70,9 +72,18 @@
         </div>
 
         <section class="wishlist-grid" id="wishlist-grid">
-        
-        </section>
+            <section class="no-results-container">
+                <div class="no-results-img">
+                    <img src="../img/agumon.avif" alt="No hay pokemones disponibles">
+                </div>
 
+                <div class="no-results-message">
+                    <h2>¡Oops! No hay nada por aquí</h2>
+                    <p>En este momento no hay ningún Pokémon para mostrar en pantalla.</p>
+                </div>
+            </section>
+        </section>
+        <section  id="modal-container"></section>
         
 
     </main>

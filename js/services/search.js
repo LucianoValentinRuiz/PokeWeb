@@ -40,13 +40,6 @@ export async function getPokemonByName(name) {
     try {
         const response = await fetch(`${BASE_URL}/pokemon/${name}`, config);
         let data = await response.json();
-        /*const result = [
-            data.name,
-            data.id,
-            data.sprites.other['official-artwork'].front_default,
-            data.types['0'].type.name
-        ];*/
-
         return data;
     }
     catch(error) {

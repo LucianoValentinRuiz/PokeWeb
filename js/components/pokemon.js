@@ -93,7 +93,7 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
         }
     });
 
-    //HABILIDADES DEL POKEMON
+    //MOVIMIENTOS DEL POKEMON
     const movesContainer = document.getElementById('moves-container');
     const movimientos = miPokemon.moves.slice(0, 12); //lo limitamos a 12 para no sobrecargar
 
@@ -107,7 +107,6 @@ async function imprimirPokemon(miPokemon, miPokemonBio) {
 
         //7.CADENA EVOLUTIVA
         await cargarCadenaEvolutiva(miPokemonBio,miPokemon.nombre);
-        
 
     }
 
@@ -159,9 +158,9 @@ const guardarEnHistorial = (nombre) => {
     const limite = 12;
 
     let historial = JSON.parse(localStorage.getItem(CLAVE)) || [];
-    historial = historial.filter(item => item.nombre !== nombre);
+    historial = historial.filter(item => item.name !== nombre);
     const nuevoRegistro = {
-        nombre: nombre,
+        name: nombre,
         fechaVisita: new Date().toISOString() 
     };
     historial.push(nuevoRegistro);

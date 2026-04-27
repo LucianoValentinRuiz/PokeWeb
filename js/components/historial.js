@@ -1,17 +1,19 @@
 import { getPokemonMin,getPokemonByName } from "../services/search.js";
 import { redireccionamiento } from "./redireccionamiento.js";
 import { getFromLocalStorage } from "./favoritos.js";
+import { imprimirPokemonModal, botonCerrarModal, prepararEliminacion } from "./modalEliminar.js";
+import { prepararLimpieza} from "./modalLimpiar.js";
 
-const listaHistorial = getFromLocalStorage("historial") || []; // Agregamos || [] por seguridad
-
+const listaHistorial = getFromLocalStorage('historial');
+let contador = 0;
 export async function renderHistorialNodes(pokemons) {
     // 1. Mapeo previo de datos
     let mapeoDeDeseados = await Promise.all(pokemons.map(async (pokemon) => {
         // Usamos pokemon.nombre porque la estructura del objeto cambió
-        const pokemonPromises = await getPokemonMin(pokemon.nombre);
-        const miPokemon = await getPokemonByName(pokemon.nombre);
+        const pokemonPromises = await getPokemonMin(pokemon.name);
+        const miPokemon = await getPokemonByName(pokemon.name);
         return {
-            pokemonBase: pokemon,         // Ej: { nombre: "pikachu", fechaVisita: "2026-04-21T19:01:25.000Z" }
+            pokemonBase: pokemon,
             pokemonMin: pokemonPromises,  
             pokemonFull: miPokemon        
         };
@@ -23,7 +25,7 @@ export async function renderHistorialNodes(pokemons) {
 
     // 3. Iteramos sobre los datos para armar el HTML
     mapeoDeDeseados.forEach(dato => {
-        // contador = contador + 1;
+        contador = contador + 1;
         const { pokemonBase, pokemonMin, pokemonFull } = dato;
 
         // --- Contenedor Principal (wish-info) ---
@@ -40,12 +42,12 @@ export async function renderHistorialNodes(pokemons) {
         const img = document.createElement('img');
         img.classList.add('wish-img');
         img.src = pokemonMin[2];
-        img.alt = pokemonBase.nombre; // Cambiado a .nombre
+        img.alt = pokemonBase.name; 
         imgPok.appendChild(img);
 
         const namePok = document.createElement('div');
         namePok.classList.add('wish-name');
-        namePok.textContent = pokemonBase.nombre; // Cambiado a .nombre
+        namePok.textContent = pokemonBase.name; 
 
         const idPok = document.createElement('div');
         idPok.classList.add('wish-id');
@@ -133,15 +135,22 @@ export async function renderHistorialNodes(pokemons) {
         btnDetail.classList.add('btn-detail');
         btnDetail.textContent = 'Ver detalle';
         btnDetail.addEventListener('click', () => {
-            redireccionamiento(pokemonBase.nombre); // Cambiado a .nombre
+            redireccionamiento(pokemonBase.name); // Cambiado a .nombre
         });
 
         const btnRemove = document.createElement('button');
         btnRemove.classList.add('btn-remove');
         btnRemove.textContent = '✕';
-        /* btnRemove.addEventListener('click', () => {
-            // Lógica para remover del historial si lo deseas
-        }); */
+        btnRemove.addEventListener('click', async () => {
+            //Se carga el HTML del modal
+            const container = document.getElementById('modal-container');
+            const response = await fetch('modalEliminar.html');
+            const htmlText = await response.text();
+            container.innerHTML = htmlText;
+            await imprimirPokemonModal(pokemonBase.name,pokemonMin[1],pokemonMin[2]);
+            await botonCerrarModal();
+            await prepararEliminacion(pokemonBase.name,'historial');
+        });
 
         actionsDiv.append(btnDetail, btnRemove);
 
@@ -155,4 +164,21 @@ export async function renderHistorialNodes(pokemons) {
         container.appendChild(wishInfo);
     });
 }
-await renderHistorialNodes(listaHistorial);
+
+if (listaHistorial.length === 0){
+    console.log("esta vacio");    
+}
+else{
+    await renderHistorialNodes(listaHistorial);
+    document.getElementById("count").textContent = contador;
+}
+
+const btnLimpiar = document.getElementById('btn-clear-all').addEventListener('click', async () => {
+    //Se carga el HTML del modal
+    const container = document.getElementById('modal-container');
+    const response = await fetch('modalLimpiar.html');
+    const htmlText = await response.text();
+    container.innerHTML = htmlText;
+    await botonCerrarModal();
+    await prepararLimpieza('historial');
+        });

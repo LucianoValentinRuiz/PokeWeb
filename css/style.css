@@ -324,14 +324,12 @@ main {
   font-weight: 500;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
-  
-  /*alinear la flecha y el texto */
   display: flex; 
   align-items: center;
   justify-content: center;
 }
 
-/*efecto Hover para ant y sig*/
+/*efecto Hover*/
 .page-prev:hover, 
 .page-next:hover {
   background-color: rgba(138, 92, 255, 0.15);
@@ -340,14 +338,12 @@ main {
   transform: translateY(-3px);
 }
 
-/*estado "Deshabilitado"
- JS cambiar el atributo 'disabled', y este CSS lo hace opaco.
-*/
+/*estado "Deshabilitado"*/
 .page-prev:disabled, 
 .page-next:disabled {
   opacity: 0.3;
   cursor: not-allowed;
-  transform: none; /*quita el salto*/
+  transform: none;
   background-color: transparent;
   border-color: rgba(138, 92, 255, 0.1);
   color: #8b86a3;
